@@ -31,6 +31,9 @@ Show what the library does as concisely as possible, developers should be able t
 
 We wanted to provide a more streamlined approach to tracking our job seeking endeavors. Utilizing information from LinkedIn's API, we wanted a place to organize our listing of company interests, track our goals and store important links to resume's, portfolio sites and more to make it easy to send to prospective employers on the fly.
 
+### TumTum MVP Tracker:  (https://trello.com/b/QVyqQJxd)
+### Project 3 Daily Tracker:  (https://trello.com/b/1PvvoBtJ)
+
 
 ## Installation
 
