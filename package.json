@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/karlmorand/tumtum-tracker#readme",
   "dependencies": {
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "node-linkedin": "^0.5.3"
   }
 }
