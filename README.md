@@ -1,7 +1,7 @@
 # TumTum-tracker
 GA Project 3 - job tracker
 
-![alt=main-wireframe](https://github.com/karlmorand/tumtum-tracker/blob/master/Reference_material/TumTum_Tracker_Main.jpg)
+![alt=main-wireframe](https://github.com/karlmorand/tumtum-tracker/blob/master/reference_material/TumTum_Tracker_Main.jpg)
 ##Synopsis
 
 Take your LinkedIn experience to the next level with TumTum Tracker. The Tum Tum tracker is a seamless organizer for job searching ane networking. Store a listing of Companies you are interested in, review your goal tracker, and store important links that can be sent to employers on the fly.  
