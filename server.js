@@ -6,8 +6,8 @@ var app = express();
 app.use(express.static('public'));
 
 app.get('/', function(req,res){
-  res.render('public/index.html')
-})
+  res.render('public/index.html');
+});
 
 app.get('/logout', function(req, res){
   Li.IN.User.logout(function(){
