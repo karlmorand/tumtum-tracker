@@ -7,19 +7,22 @@ GA Project 3 - job tracker
 Take your LinkedIn experience to the next level with TumTum Tracker. The Tum Tum tracker is a seamless organizer for job searching ane networking. Store a listing of Companies you are interested in, review your goal tracker, and store important links that can be sent to employers on the fly.  
 
 
-## The following features will need to be considered for basic application of the TumTum Tracker:
+## The following MVP features will need to be considered for basic application of the TumTum Tracker:
 
-- Connect the user's existing LinkedIn account.
-- A search box to locate company profiles on LinkedIn by company name.
-- The ability to add companies to a list titled "Organizations of Interest"
-- Company name in the list will link the user to a show page that will list:
-- The Company's information
-- Button to follow the company
-- Total number of active job postings by that company
-- Number of employees associated to that Company on LinkedIn
-- Button to directly contact the company for networking
-- links to their social networks
-- Goal tracker that user can add, update and delete items from
+- Connect the user's existing LinkedIn account to log in and out.
+- A searchBox to search companies with active job postings by name.
+- The ability to add companies to a list titled "Organizations of Interest".
+
+## The following Stretch features will be considered for additional application of the TumTum Tracker:
+
+- Ability to use the app without an existing LinkedIn account.
+- Add additional search functionality for "job type", "job category" and "location" when searching for companies.
+- A search box to locate active job postings.
+- The ability to add job postings to a list titled "Jobs of Interest"
+- Ability to click on a job post list item to redirect to that job posting page.
+- Add additional search functionality for "job type", "job category" and "location" when searching for companies.
+- Company name in the list will link the user to the company's website.
+- Goal tracker that user can add, update and delete items from to track their own progress.
 - Job Search checklist to store links to user's resume, portfolio, job profiles, and gitHub
 
 
