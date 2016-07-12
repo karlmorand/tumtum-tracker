@@ -1,7 +1,7 @@
 # TumTum-tracker
 GA Project 3 - job tracker
 
-![alt=main-wireframe](https://github.com/karlmorand/tumtum-tracker/blob/master/TumTum_Tracker_Main.jpg)
+![alt=main-wireframe](https://github.com/karlmorand/tumtum-tracker/blob/master/reference_material/TumTum_Tracker_Main.jpg)
 ##Synopsis
 
 Take your LinkedIn experience to the next level with TumTum Tracker. The Tum Tum tracker is a seamless organizer for job searching ane networking. Store a listing of Companies you are interested in, review your goal tracker, and store important links that can be sent to employers on the fly.  
@@ -31,6 +31,9 @@ Show what the library does as concisely as possible, developers should be able t
 
 We wanted to provide a more streamlined approach to tracking our job seeking endeavors. Utilizing information from LinkedIn's API, we wanted a place to organize our listing of company interests, track our goals and store important links to resume's, portfolio sites and more to make it easy to send to prospective employers on the fly.
 
+### TumTum MVP Tracker:  (https://trello.com/b/QVyqQJxd)
+### Project 3 Daily Tracker:  (https://trello.com/b/1PvvoBtJ)
+
 
 ## Installation
 
@@ -40,6 +43,8 @@ Provide code examples and explanations of how to get the project.
 
 LinkedIn API: (https://developer.linkedin.com/docs)
 
+Pure CSS Framework: (http://purecss.io/)
+
 ### The following node packages will be utilized:
 
 - Express
@@ -48,6 +53,6 @@ LinkedIn API: (https://developer.linkedin.com/docs)
 - body-parser
 - method-override
 - bcrypt
+- node-linkedin (https://www.npmjs.com/package/node-linkedin)
 
-Angular-Meteor will be utilized for user permissions:
-(https://www.angular-meteor.com/tutorials/socially/angular2/user-accounts-authentication-and-permissions)
+
