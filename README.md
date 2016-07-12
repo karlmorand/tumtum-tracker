@@ -46,16 +46,19 @@ Provide code examples and explanations of how to get the project.
 
 LinkedIn API: (https://developer.linkedin.com/docs)
 
-Pure CSS Framework: (http://purecss.io/)
+
 
 ### The following node packages will be utilized:
 
 - Express
-- Express-session
 - Mongoose
 - body-parser
 - method-override
-- bcrypt
-- node-linkedin (https://www.npmjs.com/package/node-linkedin)
+- dotenv
 
 
+## Additional reference:
+
+Propogation of linkedIn user profile code (in linkedin.js lines 3, 24-30 and app.js lines 6-19) referenced from user eucuepo (https://github.com/eucuepo/angular-linkedin/tree/master/angular-linkedin/js)
+
+Visit Code Pioneer.wordpress.com for further explanation: (https://codepioneer.wordpress.com/2013/09/28/angularjs-log-in-with-linkedin/)
