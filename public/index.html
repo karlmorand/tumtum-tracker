@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html ng-app="TumTumApp">
+<html ng-app="TumTumApp" lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tum Tum Tracker</title>
     <!-- stylesheets -->
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
     <script type="text/javascript" src="/js/linkedin.js"></script>
 
     <script type="text/javascript" src="//platform.linkedin.com/in.js">
-      api_key:   API_KEY
+      api_key:   77za1nt3vews0s
       onLoad:    onLoad
       authorize: true
       lang:      en_US
@@ -21,11 +22,44 @@
   </head>
 
   <body ng-controller="UserController as user" id="userProfile">
-    <h1>Tum Tum Tracker!</h1>
 
-   
+    <header class="hero">
+      <h1>Tum Tum Tracker!</h1>
+   </header>
+
+    <div class="columns job-checklist">
+      <h2>Job Tools</h2>
+        <ul>
+            <li>Resume link</li>
+            <li>Portfolio Page</li>
+            <li>Github</li>
+        </ul>
+    </div>
+
+    <div class="columns column-border user-profile">
       <h2>Hello {{user.userprofile.firstName}} {{user.userprofile.lastName}}</h2>
       <img ng-src="{{user.userprofile.pictureUrl}}"/><br/>
+    </div>
+    
+        <div class="columns column-border company-list">
+      <h2>Companies of Interest</h2>
+        <ul>
+            <li>MojoTech</li>
+            <li>Auttomatic</li>
+            <li>Kenzan</li>
+        </ul>
+
+      <button class="add-company">Search For a Company</button>
+    </div>
+
+    <div class="columns column-border goals-list">
+      <h2>Goals</h2>
+        <ul>
+            <li>Contact 3 companies a day</li>
+            <li>Refactor routes of project app</li>
+            <li>Go to 2 meetups a week</li>
+        </ul>
+    </div>
 
     <script type="in/Login"></script>
     <a href="javascript: IN.User.logout(function(){
