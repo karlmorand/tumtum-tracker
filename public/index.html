@@ -48,7 +48,14 @@
           <li>Auttomatic</li>
           <li>Kenzan</li>
         </ul>
-        <button class="add-company" ng-click="user.getGitHubJobs()">Search For a Company</button>
+
+        <input type="text" ng-model="jobSearch" placeholder="Enter location"></br>
+        <button class="add-company" ng-click="user.getGitHubJobs(jobSearch)">Search</button>
+        <ul>
+          <li ng-repeat="job in user.jobList">
+            {{job.title}} - {{job.company}}
+          </li>
+        </ul?>
       </div>
     </div>
 
