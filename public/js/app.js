@@ -2,6 +2,7 @@ var app = angular.module('TumTumApp', ['ngRoute']);
 
 
 
+
 app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope', function($scope, $routeParams, $http, $rootScope){
 	var controller = this;
 
@@ -28,10 +29,19 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 
 				$rootScope.$apply(function() {
 					controller.userprofile = result.values[0];
-					console.log(controller.userprofile);
 					$rootScope.userprofile = controller.userprofile;
 					$rootScope.loggedUser = true;
+
 				});
+				$http({
+					method: 'GET',
+					url: 'users/loggedin/' + controller.userprofile.id
+				}).then(function(response){
+					console.log(response);
+				}, function(response){
+					console.log(response);
+				})
+
 			});
 		}
 	}
