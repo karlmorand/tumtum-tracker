@@ -1,0 +1,17 @@
+* {
+	font-family: 'Raleway', sans-serif;
+}
+
+header {
+	text-align: center;
+}
+
+.columns {
+	display: inline-block;
+	float: left;
+	width: 33%
+}
+
+.column-border {
+	border-left: 1px grey;
+}
