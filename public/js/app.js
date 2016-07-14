@@ -3,6 +3,16 @@ var app = angular.module('TumTumApp', ['ngRoute']);
 app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope', function($scope, $routeParams, $http, $rootScope){
 	var controller = this;
 
+	this.getGitHubJobs = function(){
+		$http({
+			method: 'GET',
+			url: 'https://jobs.github.com/positions.json'
+		}).then(function(response){
+			console.log(response);
+		}, function(response){
+			console.log('Error: ' + response);
+		})
+	}
 
 // The following function was located on github from user eucuepo. Reference information will be listed in README file
 	$scope.getLinkedInData = function() {
@@ -22,7 +32,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 
 
 
- 
+
 	// this.getUserInfo = function(data){   original attempt at extracting linkedIn user data for html page.
 	// 	$http ({
 	// 		method: 'GET',
