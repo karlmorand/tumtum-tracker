@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tum Tum Tracker</title>
-  
+
     <!-- stylesheets -->
     <!-- <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'> -->
     <link rel="stylesheet" type="text/css" href="css/skeleton-css/normalize.css">
@@ -61,7 +61,7 @@
       <button class="button-primary add-company" ng-click="user.getGitHubJobs(jobSearch)">Search</button>
         <ul>
           <li ng-repeat="job in user.jobList">
-            {{job.title}} - {{job.company}}
+            <a ng-click="user.addJob(job)">{{job.title}} - {{job.company}}</a>
           </li>
         </ul>
     </div>
