@@ -1,14 +1,20 @@
 var app = angular.module('TumTumApp', ['ngRoute']);
 
+
+
 app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope', function($scope, $routeParams, $http, $rootScope){
 	var controller = this;
 
-	this.getGitHubJobs = function(){
+	this.getGitHubJobs = function(searchInput){
+		var url = '/jobs/ghjobs/' + searchInput;
 		$http({
 			method: 'GET',
-			url: 'https://jobs.github.com/positions.json'
+			url: url
 		}).then(function(response){
-			console.log(response);
+			controller.jobList = response.data
+			console.log(response.data);
+			console.log(url);
+			console.log(searchInput);
 		}, function(response){
 			console.log('Error: ' + response);
 		})

@@ -2,9 +2,10 @@
 
 var express = require('express');
 var app = express();
+var jobsController = require('./controllers/jobsController.js')
 
 
-
+app.use('/jobs', jobsController)
 app.use(express.static('public'));
 
 app.get('/', function(req,res){
