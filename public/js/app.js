@@ -46,6 +46,24 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		}
 	}
 
+	this.addJob = function(jobInfo){
+		console.log('Entered addJob function');
+		// console.log(jobInfo);
+		var url = 'users/addjob/' + controller.userprofile.id;
+		// pushing to master for review, still having issues with $http request below, data being sent is empty javascript object
+		$http({
+				method: 'POST',
+				url: url,
+				'Content-Type': 'application/json',
+				data: jobInfo
+		}).then(function(response){
+			console.log(response);
+		}, function(response){
+			console.log('Error adding job:');
+			console.log(response.data);
+		})
+	}
+
 
 
 

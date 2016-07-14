@@ -6,7 +6,7 @@ var userSchema = mongoose.Schema({
   jobs : [],
   companies : [],
   resumeLink : String,
-  brandStatement : String
+  brandStatement : String,
 });
 
 var User = mongoose.model('User', userSchema);
