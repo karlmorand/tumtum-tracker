@@ -1,5 +1,5 @@
 var app = angular.module('TumTumApp', ['ngRoute']);
-var User = require('../models/userModel.js')
+
 
 
 

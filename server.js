@@ -4,6 +4,8 @@ var express = require('express');
 var app = express();
 var jobsController = require('./controllers/jobsController.js')
 var mongoose = require('mongoose');
+var User = require('./models/userModel.js')
+
 
 
 var mongoDBURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/forum-project'

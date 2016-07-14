@@ -1,7 +1,7 @@
 var express = require('express');
 var request = require('request');
 var router = express.Router();
-
+var User = require('../models/userModel.js')
 
 router.get('/ghjobs/:id', function(req, res){
   console.log('req.params.id = ' +req.params.id);
