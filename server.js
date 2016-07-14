@@ -11,6 +11,7 @@ var port = process.env.PORT || 3000
 var mongoDBURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/tumtum-tracker'
 
 app.use(express.static('public'));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use('/jobs', jobsController)
 app.use('/users', usersController);
