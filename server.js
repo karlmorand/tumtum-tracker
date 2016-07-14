@@ -1,4 +1,4 @@
-require('dotenv').config();
+// require('dotenv').config();
 
 var express = require('express');
 var app = express();
@@ -18,6 +18,8 @@ app.get('/logout', function(req, res){
   });
 })
 
-app.listen(3000, function(){
+var port = process.env.PORT || 3000
+
+app.listen(port, function(){
   console.log('Server up, listening on 3000');
 })
