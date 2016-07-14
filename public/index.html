@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tum Tum Tracker</title>
-   
+
     <!-- stylesheets -->
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -40,7 +40,7 @@
       <h2>Hello {{user.userprofile.firstName}} {{user.userprofile.lastName}}</h2>
       <img ng-src="{{user.userprofile.pictureUrl}}"/><br/>
     </div>
-    
+
     <div class="columns company-list">
       <h2>Companies of Interest</h2>
         <ul>
@@ -48,8 +48,8 @@
           <li>Auttomatic</li>
           <li>Kenzan</li>
         </ul>
-        <button class="add-company">Search For a Company</button>
-      </div>   
+        <button class="add-company" ng-click="user.getGitHubJobs()">Search For a Company</button>
+      </div>
     </div>
 
     <div class="goals-list">
@@ -60,7 +60,7 @@
           <li>Go to 2 meetups a week</li>
         </ul>
     </div>
-    
+
 
 
     <script type="in/Login"></script>
