@@ -6,7 +6,7 @@
     <title>Tum Tum Tracker</title>
   
     <!-- stylesheets -->
-    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <!-- <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'> -->
     <link rel="stylesheet" type="text/css" href="css/skeleton-css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/skeleton-css/skeleton.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -29,39 +29,8 @@
   <header class="hero">
     <h1>Tum Tum Tracker!</h1>
   </header>
-    <div class="columns job-checklist">
-      <h2>Job Tools</h2>
-        <ul>
-          <li>Resume link</li>
-          <li>Portfolio Page</li>
-          <li>Github</li>
-        </ul>
-    </div>
-
-    <div class="columns user-profile">
-      <h2>Hello {{user.userprofile.firstName}} {{user.userprofile.lastName}}</h2>
-      <img ng-src="{{user.userprofile.pictureUrl}}"/><br/>
-    </div>
-
-    <div class="columns company-list">
-      <h2>Companies of Interest</h2>
-        <ul>
-          <li>MojoTech</li>
-          <li>Auttomatic</li>
-          <li>Kenzan</li>
-        </ul>
-
-        <input type="text" ng-model="jobSearch" placeholder="Enter location"></br>
-        <button class="add-company" ng-click="user.getGitHubJobs(jobSearch)">Search</button>
-        <ul>
-          <li ng-repeat="job in user.jobList">
-            {{job.title}} - {{job.company}}
-          </li>
-        </ul?>
-      </div>
-    </div>
-
-    <div class="goals-list">
+  <div class="container">
+     <div class="one-third column goals-list">
       <h2>Goals</h2>
         <ul>
           <li>Contact 3 companies a day</li>
@@ -70,6 +39,33 @@
         </ul>
     </div>
 
+    <div class="one-third column user-profile">
+      <h3>Hello {{user.userprofile.firstName}} {{user.userprofile.lastName}}</h3>
+      <img ng-src="{{user.userprofile.pictureUrl}}"/>
+       <ul>
+        <li>Resume link</li>
+        <li>Portfolio Page</li>
+        <li>Github</li>
+      </ul>
+    </div>
+
+    <div class="one-third column company-list">
+      <h2>Companies of Interest</h2>
+        <ul>
+          <li>MojoTech</li>
+          <li>Auttomatic</li>
+          <li>Kenzan</li>
+        </ul>
+
+      <input type="text" ng-model="jobSearch" placeholder="Enter location"></br>
+      <button class="button-primary add-company" ng-click="user.getGitHubJobs(jobSearch)">Search</button>
+        <ul>
+          <li ng-repeat="job in user.jobList">
+            {{job.title}} - {{job.company}}
+          </li>
+        </ul>
+    </div>
+  </div>
 
 
     <script type="in/Login"></script>
