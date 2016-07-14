@@ -23,4 +23,11 @@ router.get('/loggedin/:id', function(req, res){
   })
 })
 
+router.post('/addjob/:id', function(req, res){
+  console.log('req.body: ' + req.body);
+  User.find(req.params.id, function(err, foundUser){
+      foundUser.jobs.push(req.body)
+  })
+})
+
 module.exports = router;

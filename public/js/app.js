@@ -46,6 +46,18 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		}
 	}
 
+	$scope.addJob = function(jobInfo){
+		$http({
+			method: 'POST',
+			url: 'users/addjob/'+ controller.userprofile.id,
+			data: jobInfo
+		}).then(function(response){
+			console.log('Added new job, response: ' + response);
+		}, function(response){
+			console.log('Error adding job: ' + response);
+		})
+	}
+
 
 
 
