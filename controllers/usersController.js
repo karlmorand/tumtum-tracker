@@ -26,7 +26,19 @@ router.get('/loggedin/:id', function(req, res){
 router.post('/addjob/:id', function(req, res){
   console.log('req.body: ' + req.body);
   User.find(req.params.id, function(err, foundUser){
-      foundUser.jobs.push(req.body)
+    var jobAlreadyAdded = false;
+    foundUser.jobs.forEach(function(job){
+      if (job.id === req.body.id) {
+        jobAlreadyAdded = true;
+      }
+    })
+    if (jobAlreadyAdded) {
+      //Job already in DB
+      console.log('Job already in DB');
+    } else {
+      console.log('New job, adding: ' + req.body);
+        foundUser.jobs.push(req.body)
+    }
   })
 })
 
