@@ -28,12 +28,23 @@ router.get('/savedJobs/:id', function(req,res){
 });
 
 router.post('/addjob/:id', function(req, res){
-  console.log(req.params.id);
+  var jobExists = false;
+
   User.find(req.params.id, function(err, foundUser){
-    foundUser[0].jobs.push(req.body);
-    foundUser[0].save();
-    console.log(foundUser[0]);
-  })
-})
+      console.log('req.body.id: ' + req.body.id);
+    foundUser[0].jobs.forEach(function(job){
+      console.log('job.id: ' + job.id);
+      if(job.id === req.body.id){
+        jobExists = true;
+      };
+    });
+    if(jobExists === false){
+      foundUser[0].jobs.push(req.body);
+      foundUser[0].save();
+    } else {
+      console.log('this job is already saved on your list!');
+    }; 
+  });
+});
 
 module.exports = router;
