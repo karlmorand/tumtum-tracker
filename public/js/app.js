@@ -65,6 +65,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 	this.getJob = function(jobInfo){
 		console.log(jobInfo);
 		this.selectedJob = jobInfo;
+		controller.jobExists = '';
 	};
 
 
@@ -77,6 +78,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 				data: jobInfo
 		}).then(function(response){
 			console.log(response);
+			controller.jobExists = response.data;
 		}, function(response){
 			console.log('Error adding job:');
 			console.log(response.data);

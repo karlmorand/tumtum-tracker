@@ -42,7 +42,7 @@ router.post('/addjob/:id', function(req, res){
       foundUser[0].jobs.push(req.body);
       foundUser[0].save();
     } else {
-      console.log('this job is already saved on your list!');
+      res.send('This job is already saved on your list!');
     }; 
   });
 });

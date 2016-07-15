@@ -2,5 +2,8 @@
 	 <h4>{{user.selectedJob.title}}</h4>
 	 <p ng-bind-html="user.selectedJob.description"></p>
 
-     <button ng-click="user.addJob(user.selectedJob)">Add Job to List</button>
+	 <h3 ng-if="user.jobExists">{{user.jobExists}}</h3>
+     <button ng-click="user.addJob(user.selectedJob)">Add Job to List</button> 
+
+
 </div>
