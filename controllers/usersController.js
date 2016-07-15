@@ -21,6 +21,12 @@ router.get('/loggedin/:id', function(req, res){
   })
 })
 
+router.get('/savedJobs/:id', function(req,res){
+  User.find(req.params.id, function(err, foundUser){
+    res.send(foundUser[0].jobs);
+  });
+});
+
 router.post('/addjob/:id', function(req, res){
   console.log(req.params.id);
   User.find(req.params.id, function(err, foundUser){
