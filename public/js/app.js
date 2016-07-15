@@ -33,6 +33,10 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 			});
 	};
 
+	$scope.$watch(function(){
+		return controller.userJobs;
+	}, function(newValue, oldValue){});
+
 // The following function was located on github from user eucuepo. Reference information will be listed in README file
 	$scope.getLinkedInData = function() {
 		if(!$scope.hasOwnProperty('userprofile')){
@@ -67,6 +71,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		this.selectedJob = jobInfo;
 		controller.jobExists = '';
 	};
+	
 
 
 	this.addJob = function(jobInfo){
@@ -83,7 +88,8 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 			console.log('Error adding job:');
 			console.log(response.data);
 		})
-	}
+	};
+
 
 	// this.getUserInfo = function(data){   original attempt at extracting linkedIn user data for html page.
 	// 	$http ({
