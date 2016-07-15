@@ -1,0 +1,6 @@
+<div ng-if="user.selectedJob">
+	 <h3>{{user.selectedJob.title}}</h3>
+	 <p ng-bind-html="user.selectedJob.description"></p>
+
+     <button ng-click="user.addJob(user.selectedJob)">Add Job to List</button>
+</div>

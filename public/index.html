@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="/js/linkedin.js"></script>
 
     <script type="text/javascript" src="//platform.linkedin.com/in.js">
@@ -50,23 +51,22 @@
     </div>
 
     <div class="one-third column company-list">
-      <h2>Companies of Interest</h2>
+      <h2>Jobs of Interest</h2>
         <ul>
-          <li>MojoTech</li>
-          <li>Auttomatic</li>
-          <li>Kenzan</li>
+          <li ng-repeat="job in user.userJobs">{{job.title}} | {{job.company}}</li>
         </ul>
 
       <input type="text" ng-model="jobSearch" placeholder="Enter location"></br>
       <button class="button-primary add-company" ng-click="user.getGitHubJobs(jobSearch)">Search</button>
         <ul>
           <li ng-repeat="job in user.jobList">
-            <a ng-click="user.addJob(job)">{{job.title}} - {{job.company}}</a>
+            <a ng-click="user.getJob(job)">{{job.title}} | {{job.company}}</a>
           </li>
         </ul>
     </div>
   </div>
-
+  
+  <div ng-include="'partials/jobDetail.html'"></div>
 
     <script type="in/Login"></script>
     <a href="javascript: IN.User.logout(function(){

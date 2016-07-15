@@ -1,7 +1,4 @@
-var app = angular.module('TumTumApp', ['ngRoute']);
-
-
-
+var app = angular.module('TumTumApp', ['ngRoute', 'ngSanitize']);
 
 app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope', function($scope, $routeParams, $http, $rootScope){
 	var controller = this;
@@ -21,6 +18,21 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		})
 	}
 
+
+	$scope.savedJobs = function(){
+
+		$http ({
+			method: 'GET',
+			url: 'users/savedJobs/' + controller.userprofile.id
+		}).then(function(response){
+			console.log('savedjobs:');
+			console.log(response);
+			controller.userJobs = response.data;
+		}, function(response) {
+			console.log(response);
+			});
+	};
+
 // The following function was located on github from user eucuepo. Reference information will be listed in README file
 	$scope.getLinkedInData = function() {
 		if(!$scope.hasOwnProperty('userprofile')){
@@ -38,6 +50,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 					url: 'users/loggedin/' + controller.userprofile.id
 				}).then(function(response){
 					console.log(response);
+					$scope.savedJobs();
 				}, function(response){
 					console.log(response);
 				})
@@ -46,8 +59,18 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		}
 	}
 
+
+
+// get Job detail and display in a template
+	this.getJob = function(jobInfo){
+		console.log(jobInfo);
+		this.selectedJob = jobInfo;
+	};
+
+
 	this.addJob = function(jobInfo){
 		var url = 'users/addjob/' + controller.userprofile.id;
+		console.log(jobInfo);
 		$http({
 				method: 'POST',
 				url: url,
@@ -76,6 +99,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 
 	$routeProvider.when('/', {
 		templateUrl: 'index.html',
+		controller: 'UserController',
+		controllerAs: 'user'
+	}).when('/users/positions/:id',{
+		templateUrl: 'partials/jobDetail.html',
 		controller: 'UserController',
 		controllerAs: 'user'
 	});
