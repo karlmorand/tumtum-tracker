@@ -2,6 +2,7 @@ var app = angular.module('TumTumApp', ['ngRoute', 'ngSanitize']);
 
 app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope', function($scope, $routeParams, $http, $rootScope){
 	var controller = this;
+	$scope.newJobCount = 0;
 
 	this.getGitHubJobs = function(searchInput){
 		var url = '/jobs/ghjobs/' + searchInput;
@@ -18,15 +19,13 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		})
 	}
 
-
 	$scope.savedJobs = function(){
-
 		$http ({
 			method: 'GET',
 			url: 'users/savedJobs/' + controller.userprofile.id
 		}).then(function(response){
 			console.log('savedjobs:');
-			console.log(response);
+			console.log('hello there!');
 			controller.userJobs = response.data;
 		}, function(response) {
 			console.log(response);
@@ -65,23 +64,32 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 	this.getJob = function(jobInfo){
 		console.log(jobInfo);
 		this.selectedJob = jobInfo;
+		controller.jobExists = '';
 	};
-
+	
 
 	this.addJob = function(jobInfo){
 		var url = 'users/addjob/' + controller.userprofile.id;
 		console.log(jobInfo);
+
 		$http({
-				method: 'POST',
-				url: url,
-				data: jobInfo
+			method: 'POST',
+			url: url,
+			data: jobInfo
 		}).then(function(response){
 			console.log(response);
+			controller.jobExists = response.data;
+			$scope.savedJobs();
+		$scope.newJobCount += 1;
+			console.log(newJobCount);
 		}, function(response){
 			console.log('Error adding job:');
 			console.log(response.data);
-		})
-	}
+		});
+	};
+
+
+
 
 	// this.getUserInfo = function(data){   original attempt at extracting linkedIn user data for html page.
 	// 	$http ({
