@@ -62,4 +62,20 @@ router.delete('/deleteSavedJobs/:user_id/:job_id', function(req, res) {
     });
 });
 
+router.get('/savedGoals/:id', function(req, res) {
+    User.findOne({linkedInID:req.params.id}, function(err, foundUser) {
+        console.log(foundUser.goals);
+        res.send(foundUser.goals);
+    });
+});
+
+router.post('/additem/:id', function(req,res){
+    User.findOne({linkedInID:req.params.id}, function(err,foundUser){
+        foundUser.goals.push(req.body);
+        foundUser.save();
+        
+    });
+});
+
+
 module.exports = router;

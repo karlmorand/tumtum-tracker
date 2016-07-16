@@ -1,8 +1,16 @@
-<div class="one-third column goals-list">
+<div class="one-half column goals-list">
   <h2>Goals</h2>
     <ul>
-      <li>Contact 3 companies a day</li>
-      <li>Refactor routes of project app</li>
-      <li>Go to 2 meetups a week</li>
+      <li ng-repeat="goal in userGoals">{{goal.itemTitle}}</li>
     </ul>
+
+    <form class="action-form">
+
+    	<h5>Add New Action Item</h5>
+		<input type="text" ng-model="itemTitle"/>
+		<button ng-click="user.newItem(itemTitle)">Submit</button>
+	</form>
 </div>
+
+
+

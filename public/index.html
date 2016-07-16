@@ -14,7 +14,6 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="/js/linkedin.js"></script>
-    <script src="/bower_components/angular-read-more/readmore.min.js"></script>
     <script type="text/javascript" src="//platform.linkedin.com/in.js">
       api_key:   77za1nt3vews0s
       onLoad:    onLoad
@@ -40,7 +39,7 @@
       <h3>Hello {{user.userprofile.firstName}} {{user.userprofile.lastName}}</h3>
       <img ng-src="{{user.userprofile.pictureUrl}}"/><br/>
         <button class="button-primary add-company">View Goals Tracker</button>
-        <div ng-include="'partials/goalsTracker.html'"></div>
+        
     </div>
 
     <div class="one-half column company-list">
@@ -62,7 +61,7 @@
     </div>
 
     <div class="row">
-      
+      <div ng-include="'partials/goalsTracker.html'"></div>
 
       <div ng-include="'partials/jobDetail.html'"></div>
     </div>
