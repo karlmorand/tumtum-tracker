@@ -4,6 +4,8 @@ var router = express.Router();
 var User = require('../models/userModel.js')
 
 router.get('/loggedin/:id', function(req, res){
+  console.log('req.params.id being sent to User.find is: ');
+  console.log(req.params.id);
   User.find(req.params.id, function(err, foundUser){
     if (foundUser.length === 0) {
       User.create({linkedInID : req.params.id}, function(err, newUser){
@@ -15,7 +17,8 @@ router.get('/loggedin/:id', function(req, res){
         }
       })
     } else {
-      // console.log('Found user in DB, id: ' + foundUser);
+      console.log('Found user in DB:');
+      console.log(foundUser);
       res.send(foundUser)
     }
   });
@@ -42,7 +45,7 @@ router.post('/addjob/:id', function(req, res){
       res.send('');
     } else {
       res.send('This job is already saved on your list!');
-    }; 
+    };
   });
 });
 
