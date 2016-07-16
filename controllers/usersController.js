@@ -31,9 +31,7 @@ router.post('/addjob/:id', function(req, res){
   var jobExists = false;
 
   User.find(req.params.id, function(err, foundUser){
-      console.log('req.body.id: ' + req.body.id);
     foundUser[0].jobs.forEach(function(job){
-      console.log('job.id: ' + job.id);
       if(job.id === req.body.id){
         jobExists = true;
       };
@@ -41,6 +39,7 @@ router.post('/addjob/:id', function(req, res){
     if(jobExists === false){
       foundUser[0].jobs.push(req.body);
       foundUser[0].save();
+      res.send('');
     } else {
       res.send('This job is already saved on your list!');
     }; 
