@@ -4,8 +4,6 @@ var router = express.Router();
 var User = require('../models/userModel.js')
 
 router.get('/loggedin/:id', function(req, res) {
-    console.log('req.params.id being sent to User.find is: ');
-    console.log(req.params.id);
     User.findOne({
         linkedInID: req.params.id
     }, function(err, foundUser) {
@@ -64,18 +62,25 @@ router.delete('/deleteSavedJobs/:user_id/:job_id', function(req, res) {
 
 router.get('/savedGoals/:id', function(req, res) {
     User.findOne({linkedInID:req.params.id}, function(err, foundUser) {
-        console.log(foundUser.goals);
         res.send(foundUser.goals);
     });
 });
 
 router.post('/additem/:id', function(req,res){
     User.findOne({linkedInID:req.params.id}, function(err,foundUser){
+      console.log(req.body);
         foundUser.goals.push(req.body);
         foundUser.save();
-        
+        res.send();
     });
 });
+
+router.delete('/deleteitem/:id', function(req, res){
+  User.findOne({linkedInID:req.params.user_id}, function(err, foundUser) {
+    
+
+  })
+})
 
 
 module.exports = router;

@@ -1,16 +1,22 @@
 <div class="one-half column goals-list">
   <h2>Goals</h2>
     <ul>
-      <li ng-repeat="goal in userGoals">{{goal.itemTitle}}</li>
+      <li ng-repeat="goal in user.userGoals" ng-click="user.editItem(goal)">
+        <strong>{{goal.itemTitle}}</strong> - {{goal.itemNotes}}
+        <div ng-if="user.selectedGoal === goal">
+            <form class="action-form" ng-submit="">
+            <input type="text" ng-model="user.selectedGoal.itemTitle" />
+            <input type="text" ng-model="user.selectedGoal.itemNotes" />
+            <button type="submit">Submit</button>
+            </form>
+        </div>
+      </li>
     </ul>
 
-    <form class="action-form">
-
+    <form class="action-form" ng-submit="user.newItem()">
     	<h5>Add New Action Item</h5>
-		<input type="text" ng-model="itemTitle"/>
-		<button ng-click="user.newItem(itemTitle)">Submit</button>
+		<input type="text" ng-model="user.itemTitle" placeholder="Item Title"/>
+    <input type="text" ng-model="user.itemNotes" placeholder="Item Notes"/>
+		<button type="submit">Submit</button>
 	</form>
 </div>
-
-
-
