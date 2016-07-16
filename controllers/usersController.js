@@ -18,8 +18,8 @@ router.get('/loggedin/:id', function(req, res){
       // console.log('Found user in DB, id: ' + foundUser);
       res.send(foundUser)
     }
-  })
-})
+  });
+});
 
 router.get('/savedJobs/:id', function(req,res){
   User.find(req.params.id, function(err, foundUser){
@@ -43,6 +43,18 @@ router.post('/addjob/:id', function(req, res){
     } else {
       res.send('This job is already saved on your list!');
     }; 
+  });
+});
+
+router.delete('/deleteSavedJobs/:user_id/:job_id', function(req,res){
+  User.find(req.params.user_id, function(err, foundUser){
+    foundUser[0].jobs.forEach(function(job, index){
+      if(job.id === req.params.job_id){
+        foundUser[0].jobs.splice(index, 1);
+      };
+    });
+    foundUser[0].save();
+    res.send('');
   });
 });
 
