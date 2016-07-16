@@ -2,7 +2,7 @@ var app = angular.module('TumTumApp', ['ngRoute', 'ngSanitize']);
 
 app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope', function($scope, $routeParams, $http, $rootScope){
 	var controller = this;
-	$scope.newJobCount = 0;
+	
 
 	this.getGitHubJobs = function(searchInput){
 		var url = '/jobs/ghjobs/' + searchInput;
@@ -25,8 +25,6 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 			method: 'GET',
 			url: 'users/savedJobs/' + controller.userprofile.id
 		}).then(function(response){
-			console.log('savedjobs:');
-			console.log('hello there!');
 			controller.userJobs = response.data;
 		}, function(response) {
 			console.log(response);
@@ -86,8 +84,6 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 			console.log(response);
 			controller.jobExists = response.data;
 			$scope.savedJobs();
-		$scope.newJobCount += 1;
-			console.log(newJobCount);
 		}, function(response){
 			console.log('Error adding job:');
 			console.log(response.data);
