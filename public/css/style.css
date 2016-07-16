@@ -1,9 +1,6 @@
 * {
 	font-family: 'Raleway', sans-serif;
 }
-body {
-	margin: 0 30px;
-}
 
 header {
 	text-align: center;
@@ -19,6 +16,10 @@ header {
 	border-left: 1px grey;
 }
 
-.partial {
+#partial {
 	margin-left: 5%;
+}
+
+#alert {
+	color: red;
 }
