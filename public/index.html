@@ -35,26 +35,15 @@
     console.log('Logged out');});">Logout</a>
   </header>
   <div class="container">
-    <div class="one-third column goals-list">
-      <h2>Goals</h2>
-        <ul>
-          <li>Contact 3 companies a day</li>
-          <li>Refactor routes of project app</li>
-          <li>Go to 2 meetups a week</li>
-        </ul>
-    </div>
 
-    <div class="one-third column user-profile">
+    <div class="one-half column user-profile">
       <h3>Hello {{user.userprofile.firstName}} {{user.userprofile.lastName}}</h3>
-      <img ng-src="{{user.userprofile.pictureUrl}}"/>
-       <ul>
-        <li>Resume link</li>
-        <li>Portfolio Page</li>
-        <li>Github</li>
-      </ul>
+      <img ng-src="{{user.userprofile.pictureUrl}}"/><br/>
+        <button class="button-primary add-company">View Goals Tracker</button>
+        <div ng-include="'partials/goalsTracker.html'"></div>
     </div>
 
-    <div class="one-third column company-list">
+    <div class="one-half column company-list">
       <h2>Jobs of Interest</h2>
         <ul>
           <li ng-repeat="job in user.userJobs">
@@ -73,6 +62,8 @@
     </div>
 
     <div class="row">
+      
+
       <div ng-include="'partials/jobDetail.html'"></div>
     </div>
 
