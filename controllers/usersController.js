@@ -7,7 +7,7 @@ router.get('/loggedin/:id', function(req, res){
   var userExists = false;
   console.log('req.params.id being sent to User.find is: ');
   console.log(req.params.id);
-  User.find(req.params.id, function(err, foundUser){
+  User.find(function(err, foundUser){
     foundUser.forEach(function(user){
       if (user.linkedInID === req.params.id) {
         userExists = true;
