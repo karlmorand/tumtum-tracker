@@ -1,13 +1,14 @@
 <div ng-if="user.selectedJob" class="eleven columns" id="partial">
-	 <h3>{{user.selectedJob.title}}</h3>
-	 <p ng-bind-html="user.selectedJob.description"></p>
-	 <h4 ng-if="user.jobExists" id="alert">{{user.jobExists}}</h4>`
 
+	 <h3>{{user.selectedJob.title}}</h3>
+
+	 <p ng-bind-html="user.selectedJob.description"></p>
+	 <h4 ng-if="user.jobExists" id="alert">{{user.jobExists}}</h4>
      <button ng-click="user.addJob(user.selectedJob)">Add Job to List</button>
 </div>
 
 <div ng-if="jobDetail" class="eleven columns" id="partial">
-	 <h4>{{user.jobDetail.title}}</h4>
+	 <h4>{{jobDetail.title}}</h4>
 	 <p ng-bind-html="jobDetail.description"></p>
 
       <button ng-if="jobDetail" ng-click="user.deleteJob(jobDetail)">Delete Job from List</button>
