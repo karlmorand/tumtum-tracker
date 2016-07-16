@@ -4,22 +4,27 @@ var router = express.Router();
 var User = require('../models/userModel.js')
 
 router.get('/loggedin/:id', function(req, res){
-  User.find(req.params.id, function(err, foundUser){
-    if (!foundUser) {
-      User.create({linkedInID : req.params.id}, function(err, newUser){
-        if (err) {
-          console.log(err);
-        } else {
-          console.log('User not in DB, created new user with id: ' + newUser);
-          res.send(newUser);
-        }
-      })
-    } else {
-      // console.log('Found user in DB, id: ' + foundUser);
-      res.send(foundUser)
-    }
-  })
-})
+  var userExists = false;
+  console.log('req.params.id being sent to User.find is: ');
+  console.log(req.params.id);
+  User.find(function(err, foundUser){
+    foundUser.forEach(function(user){
+      if (user.linkedInID === req.params.id) {
+        userExists = true;
+      };
+        if(userExists === false){
+          User.create({linkedInID : req.params.id}, function(err, newUser){
+            if (err) {
+              console.log(err);
+            } else {
+              console.log('User not in DB, created new user with id: ' + newUser);
+            };
+         });
+      };     
+    });
+    res.send('');
+  });
+});
 
 router.get('/savedJobs/:id', function(req,res){
   User.find(req.params.id, function(err, foundUser){
@@ -28,12 +33,34 @@ router.get('/savedJobs/:id', function(req,res){
 });
 
 router.post('/addjob/:id', function(req, res){
-  console.log(req.params.id);
+  var jobExists = false;
+
   User.find(req.params.id, function(err, foundUser){
-    foundUser[0].jobs.push(req.body);
+    foundUser[0].jobs.forEach(function(job){
+      if(job.id === req.body.id){
+        jobExists = true;
+      };
+    });
+    if(jobExists === false){
+      foundUser[0].jobs.push(req.body);
+      foundUser[0].save();
+      res.send('');
+    } else {
+      res.send('This job is already saved on your list!');
+    };
+  });
+});
+
+router.delete('/deleteSavedJobs/:user_id/:job_id', function(req,res){
+  User.find(req.params.user_id, function(err, foundUser){
+    foundUser[0].jobs.forEach(function(job, index){
+      if(job.id === req.params.job_id){
+        foundUser[0].jobs.splice(index, 1);
+      };
+    });
     foundUser[0].save();
-    console.log(foundUser[0]);
-  })
-})
+    res.send('');
+  });
+});
 
 module.exports = router;

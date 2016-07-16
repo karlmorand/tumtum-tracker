@@ -5,3 +5,10 @@
      <button ng-click="user.addJob(user.selectedJob)">Add Job to List</button>
 </div>
 
+<div ng-if="jobDetail" class="eleven columns" id="partial">
+	 <h4>{{user.jobDetail.title}}</h4>
+	 <p ng-bind-html="jobDetail.description"></p>
+
+      <button ng-if="jobDetail" ng-click="user.deleteJob(jobDetail)">Delete Job from List</button> 
+</div>
+

@@ -2,6 +2,7 @@ var app = angular.module('TumTumApp', ['ngRoute', 'ngSanitize']);
 
 app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope', function($scope, $routeParams, $http, $rootScope){
 	var controller = this;
+	
 
 	this.getGitHubJobs = function(searchInput){
 		var url = '/jobs/ghjobs/' + searchInput;
@@ -17,16 +18,13 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 			console.log('Error: ' + response);
 		})
 	}
-
+	
 
 	$scope.savedJobs = function(){
-
 		$http ({
 			method: 'GET',
 			url: 'users/savedJobs/' + controller.userprofile.id
 		}).then(function(response){
-			console.log('savedjobs:');
-			console.log(response);
 			controller.userJobs = response.data;
 		}, function(response) {
 			console.log(response);
@@ -59,29 +57,53 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		}
 	}
 
-
+	this.userJobDetail = function(jobDetail){
+		$scope.jobDetail = jobDetail;
+		controller.jobExists = '';
+		this.selectedJob = '';
+	};
 
 // get Job detail and display in a template
 	this.getJob = function(jobInfo){
 		console.log(jobInfo);
 		this.selectedJob = jobInfo;
+		controller.jobExists = '';
+		$scope.jobDetail = '';
 	};
-
+	
 
 	this.addJob = function(jobInfo){
 		var url = 'users/addjob/' + controller.userprofile.id;
 		console.log(jobInfo);
+
 		$http({
-				method: 'POST',
-				url: url,
-				data: jobInfo
+			method: 'POST',
+			url: url,
+			data: jobInfo
 		}).then(function(response){
 			console.log(response);
+			controller.jobExists = response.data;
+			$scope.savedJobs();
 		}, function(response){
 			console.log('Error adding job:');
 			console.log(response.data);
-		})
-	}
+		});
+	};
+
+	this.deleteJob = function(jobDetail){
+
+		$http ({
+			method: 'DELETE',
+			url: 'users/deleteSavedJobs/' + controller.userprofile.id + '/' + jobDetail.id
+		}).then(function(response){
+			console.log(response);
+			$scope.jobDetail = '';
+			$scope.savedJobs();
+		}, function(response){
+			console.log(response);
+		});
+	};
+
 
 	// this.getUserInfo = function(data){   original attempt at extracting linkedIn user data for html page.
 	// 	$http ({
