@@ -31,6 +31,19 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 			});
 	};
 
+	$scope.savedGoals = function(){
+		console.log('hello there!!!');
+		$http({
+			method: 'GET',
+			url:'users/savedGoals/' + controller.userprofile.id
+		}).then(function(response){
+			console.log(response.data);
+			controller.userGoals = response.data;
+		},function(response){
+			console.log(response);
+		});
+	}
+
 // The following function was located on github from user eucuepo. Reference information will be listed in README file
 	$scope.getLinkedInData = function() {
 		if(!$scope.hasOwnProperty('userprofile')){
@@ -114,7 +127,27 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 	// 		});
 	// }
 
+	// For managing the Goals tracker partial
+
+
+
+	this.newItem = function(itemTitle){
+		var url = 'users/additem/' + controller.userprofile.id;
+
+		$http({
+			method: "POST",
+			url: url,
+			data: {itemTitle}
+		}).then(function(response){
+			console.log(response);
+			$scope.savedGoals();
+		}, function(response){
+			console.log(response);
+		});
+	}
 }]);
+
+
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
 	$locationProvider.html5Mode({enabled:true});
@@ -125,6 +158,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 		controllerAs: 'user'
 	}).when('/users/positions/:id',{
 		templateUrl: 'partials/jobDetail.html',
+		controller: 'UserController',
+		controllerAs: 'user'
+	}).when('/users/items/:id', {
+		templateUrl: 'partials/goalsTracker.html',
 		controller: 'UserController',
 		controllerAs: 'user'
 	});
