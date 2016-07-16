@@ -4,23 +4,25 @@ var router = express.Router();
 var User = require('../models/userModel.js')
 
 router.get('/loggedin/:id', function(req, res){
+  var userExists = false;
   console.log('req.params.id being sent to User.find is: ');
   console.log(req.params.id);
   User.find(req.params.id, function(err, foundUser){
-    if (foundUser.length === 0) {
-      User.create({linkedInID : req.params.id}, function(err, newUser){
-        if (err) {
-          console.log(err);
-        } else {
-          console.log('User not in DB, created new user with id: ' + newUser);
-          res.send(newUser);
-        }
-      })
-    } else {
-      console.log('Found user in DB:');
-      console.log(foundUser);
-      res.send(foundUser)
-    }
+    foundUser.forEach(function(user){
+      if (user.linkedInID === req.params.id) {
+        userExists = true;
+      };
+        if(userExists === false){
+          User.create({linkedInID : req.params.id}, function(err, newUser){
+            if (err) {
+              console.log(err);
+            } else {
+              console.log('User not in DB, created new user with id: ' + newUser);
+            };
+         });
+      };     
+    });
+    res.send('');
   });
 });
 
