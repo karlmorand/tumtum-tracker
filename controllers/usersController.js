@@ -5,7 +5,7 @@ var User = require('../models/userModel.js')
 
 router.get('/loggedin/:id', function(req, res){
   User.find(req.params.id, function(err, foundUser){
-    if (!foundUser) {
+    if (foundUser.length === 0) {
       User.create({linkedInID : req.params.id}, function(err, newUser){
         if (err) {
           console.log(err);
