@@ -53,7 +53,9 @@
     <div class="one-third column company-list">
       <h2>Jobs of Interest</h2>
         <ul>
-          <li ng-repeat="job in user.userJobs">{{job.title}} | {{job.company}}</li>
+          <li ng-repeat="job in user.userJobs">
+            <a ng-click="user.userJobDetail(job)">{{job.title}} | {{job.company}}</a>
+          </li>
         </ul>
 
       <input type="text" ng-model="jobSearch" placeholder="Enter location"></br>

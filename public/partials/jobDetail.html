@@ -3,7 +3,13 @@
 	 <p ng-bind-html="user.selectedJob.description"></p>
 
 	 <h3 ng-if="user.jobExists">{{user.jobExists}}</h3>
-     <button ng-click="user.addJob(user.selectedJob)" id="newJobButton">Add Job to List</button> 
+     <button ng-if="user.selectedJob" ng-click="user.addJob(user.selectedJob)" id="newJobButton">Add Job to List</button> 
 
+</div>
 
+<div ng-if="jobDetail" class="seven columns">
+	 <h4>{{user.jobDetail.title}}</h4>
+	 <p ng-bind-html="jobDetail.description"></p>
+
+      <button ng-if="jobDetail" ng-click="user.deleteJob(jobDetail)">Delete Job from List</button> 
 </div>

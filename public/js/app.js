@@ -18,6 +18,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 			console.log('Error: ' + response);
 		})
 	}
+	
 
 	$scope.savedJobs = function(){
 		$http ({
@@ -58,13 +59,18 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		}
 	}
 
-
+	this.userJobDetail = function(jobDetail){
+		$scope.jobDetail = jobDetail;
+		controller.jobExists = '';
+		this.selectedJob = '';
+	};
 
 // get Job detail and display in a template
 	this.getJob = function(jobInfo){
 		console.log(jobInfo);
 		this.selectedJob = jobInfo;
 		controller.jobExists = '';
+		$scope.jobDetail = '';
 	};
 	
 
@@ -88,7 +94,19 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		});
 	};
 
+	this.deleteJob = function(jobDetail){
 
+		$http ({
+			method: 'DELETE',
+			url: 'users/deleteSavedJobs/' + controller.userprofile.id + '/' + jobDetail.id
+		}).then(function(response){
+			console.log(response);
+			$scope.jobDetail = '';
+			$scope.savedJobs();
+		}, function(response){
+			console.log(response);
+		});
+	};
 
 
 	// this.getUserInfo = function(data){   original attempt at extracting linkedIn user data for html page.
