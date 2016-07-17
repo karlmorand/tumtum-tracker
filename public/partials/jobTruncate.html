@@ -16,5 +16,5 @@
 	 <button ng-click="user.switchGetJob(getJobShort)">Read More...</button><br/>
 
 	<h4 ng-if="user.jobExists" id="alert">{{user.jobExists}}</h4>
-    <button ng-click="user.addJob(getJobShort)">Add Job to List</button>
+    <button ng-if="!user.jobExists" ng-click="user.addJob(getJobShort)">Add Job to List</button>
 </div>

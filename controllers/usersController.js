@@ -41,7 +41,7 @@ router.post('/addjob/:id', function(req, res) {
         if (jobExists === false) {
             foundUser.jobs.push(req.body);
             foundUser.save();
-            res.send('');
+            res.send('Job Saved!');
         } else {
             res.send('This job is already saved on your list!');
         };
