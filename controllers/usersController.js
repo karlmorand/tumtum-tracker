@@ -75,11 +75,19 @@ router.post('/additem/:id', function(req,res){
     });
 });
 
-router.delete('/deleteitem/:id', function(req, res){
-  User.findOne({linkedInID:req.params.user_id}, function(err, foundUser) {
-    
 
-  })
+router.delete('/deletegoal/:user_id/:goal_id', function(req, res){
+  console.log('entered delete route');
+  User.findOne({linkedInID:req.params.user_id}, function(err, foundUser) {
+    var goalIndex = foundUser.goals.findIndex(function(element){
+      if (element.id === req.params.goal_id) {
+        return true;
+      }
+    })
+    foundUser.goals.splice(goalIndex, 1);
+    foundUser.save();
+    res.send();
+})
 })
 
 
