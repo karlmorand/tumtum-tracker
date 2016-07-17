@@ -11,9 +11,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 			url: url
 		}).then(function(response){
 			controller.jobList = response.data
-			console.log(response.data);
-			console.log(url);
-			console.log(searchInput);
+			$scope.showGoalTracker = false;
 		}, function(response){
 			console.log('Error: ' + response);
 		})
@@ -79,6 +77,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		controller.jobExists = '';
 		this.selectedJob = '';
 		$scope.jobDetail = '';
+		$scope.showGoalTracker = false;
 	}
 
 	this.getJobTruncate = function(getJobShort){
@@ -87,10 +86,11 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		controller.jobExists = '';
 		this.selectedJob = '';
 		$scope.jobDetail = '';
+		$scope.showGoalTracker = false;
 	}
 
 	this.switchView = function(jobShort){
-		
+
 	    if(this.partial_url == 'partials/jobTruncate.html'){
 	        this.partial_url = 'partials/jobDetail.html';
 	        this.userJobDetail(jobShort);
@@ -100,7 +100,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 	};
 
 	this.switchGetJob = function(getJobShort){
-	
+
 	    if(this.partial_url == 'partials/jobTruncate.html'){
 	        this.partial_url = 'partials/jobDetail.html';
 	        this.getJob(getJobShort);
@@ -117,6 +117,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		this.selectedJob = '';
 		$scope.jobShort = '';
 		$scope.getJobShort = '';
+		$scope.showGoalTracker = false;
 	};
 
 	this.showGoalTracker = function(){
@@ -135,6 +136,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		$scope.jobDetail = '';
 		$scope.jobShort = '';
 		$scope.getJobShort = '';
+		$scope.showGoalTracker = false;
 	};
 
 
