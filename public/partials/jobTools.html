@@ -7,7 +7,12 @@
     LinkedIn:<a href="https://www.linkedin.com/in/{{user.jobTools.linkedin}}">{{user.jobTools.linkedin}}</a></br>
     Twitter: <a href="https://twitter.com/{{user.jobTools.twitter}}">@{{user.jobTools.twitter}}</a></br>
     Portfolio: <a>{{user.jobTools.portfolio}}</a></br>
-    <button type="button" ng-click="user.showEditJobTools()">Edit Links</button>
+
+    <h4>Brand Statement</h4>
+    <p>
+      {{user.jobTools.brandStatement}}
+    </p>
+    <button type="button" ng-click="user.showEditJobTools()">Edit</button>
   </div>
 
   <div ng-if="editJobTools">
@@ -17,6 +22,8 @@
     LinkedIn Username: <input type="text" ng-model="user.jobTools.linkedin"/></br>
     Twitter Username: <input type="text" ng-model="user.jobTools.twitter"/></br>
     Portfolio Link: <input type="text" ng-model="user.jobTools.portfolio"/></br>
+    Brand Statement: <textarea class="u-full-width" ng-model="user.jobTools.brandStatement"></textarea>
+
     <button type="submit">Submit</button>
     <button type="cancel">Cancel</button>
   </form>
