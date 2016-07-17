@@ -135,10 +135,12 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 	this.newItem = function(){
 		var url = 'users/additem/' + controller.userprofile.id;
 		console.log(this.itemTitle);
-		var itemId = Math.floor(Math.random()*1000000000000)
+		var itemId = Math.floor(Math.random()*1000000000000);
+
 
 		var itemToPost = {'itemTitle': this.itemTitle,
 											'itemNotes': this.itemNotes,
+											'done': false,
 											'id': itemId}
 		$http({
 			method: "POST",
@@ -160,6 +162,19 @@ this.deleteItem = function(goal) {
 	}).then(function(response){
 		$scope.savedGoals();
 		console.log(response);
+	}, function(response){
+		console.log(response);
+	})
+}
+
+this.completeItem = function(goal){
+	$http({
+		method: 'POST',
+		url: 'users/completeitem/'+ controller.userprofile.id + '/' + goal.id
+	}).then(function(response){
+		console.log('completed completeitem function');
+		console.log(response);
+		$scope.savedGoals();
 	}, function(response){
 		console.log(response);
 	})

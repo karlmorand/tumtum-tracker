@@ -77,7 +77,6 @@ router.post('/additem/:id', function(req,res){
 
 
 router.delete('/deletegoal/:user_id/:goal_id', function(req, res){
-  console.log('entered delete route');
   User.findOne({linkedInID:req.params.user_id}, function(err, foundUser) {
     var goalIndex = foundUser.goals.findIndex(function(element){
       if (element.id === req.params.goal_id) {
@@ -90,5 +89,23 @@ router.delete('/deletegoal/:user_id/:goal_id', function(req, res){
 })
 })
 
+router.post('/completeitem/:user_id/:goal_id', function(req, res){
+  var userUpdate = "";
+  User.findOne({linkedInID:req.params.user_id}, function(err, foundUser){
+    foundUser.goals.forEach(function(goal){
+      if (goal.id == req.params.goal_id) {
+        goal.done = true;
+      }
+    })
+  foundUser.save()
+  userUpdate = foundUser.goals;
+  console.log('userUpdate is:');
+  console.log(userUpdate);
+
+  User.findOneAndUpdate({linkedInID:req.params.user_id}, {$set:{goals:userUpdate}}, function(err, doc){
+    res.send();
+  })
+  })
+  });
 
 module.exports = router;
