@@ -1,5 +1,5 @@
 <div class="one-half column goals-list">
-  <h2>Goals</h2>
+  <h2>Action Items</h2>
     <ul>
       <div ng-repeat="goal in user.userGoals">
         <div ng-if="goal.done == false">
@@ -12,11 +12,11 @@
     </ul>
     <form class="action-form" ng-submit="user.newItem()">
     	<h5>Add New Action Item</h5>
-		<input type="text" ng-model="user.itemTitle" placeholder="Item Title"/>
-    <input type="text" ng-model="user.itemNotes" placeholder="Item Notes"/>
+		<input type="text" ng-model="user.itemTitle" placeholder="Action item title"/></br>
+    <textarea class="u-full-width" ng-model="user.itemNotes" placeholder="Action item notes"></textarea>
 		<button type="submit">Submit</button>
 	</form>
-  <h2>Completed Goals</h2>
+  <h2>Completed Items</h2>
     <ul>
       <div ng-repeat="goal in user.userGoals">
         <div ng-if="goal.done == true">
