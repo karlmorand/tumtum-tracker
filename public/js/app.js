@@ -77,6 +77,8 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		console.log($scope.jobShort);
 		$scope.getJobShort = '';
 		controller.jobExists = '';
+		this.selectedJob = '';
+		$scope.jobDetail = '';
 	}
 
 	this.getJobTruncate = function(getJobShort){
@@ -93,7 +95,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 	        this.partial_url = 'partials/jobDetail.html';
 	        this.userJobDetail(jobShort);
 	    } else {
-	        this.include_url = 'partials/jobTruncate.html';
+	        this.partial_url = 'partials/jobTruncate.html';
 	    }
 	};
 
@@ -103,7 +105,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 	        this.partial_url = 'partials/jobDetail.html';
 	        this.getJob(getJobShort);
 	    } else {
-	        this.include_url = 'partials/jobTruncate.html';
+	        this.partial_url = 'partials/jobTruncate.html';
 	    }
 	};
 
@@ -114,18 +116,21 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		controller.jobExists = '';
 		this.selectedJob = '';
 		$scope.jobShort = '';
+		$scope.getJobShort = '';
 	};
 
 	this.showGoalTracker = function(){
 		$scope.showGoalTracker = !$scope.showGoalTracker;
 		this.selectedJob = '';
 		$scope.jobDetail = '';
+		$scope.jobShort = '';
+		$scope.getJobShort = '';
 	}
 
 // get Job detail and display in a template
-	this.getJob = function(jobInfo){
-		console.log(jobInfo);
-		this.selectedJob = jobInfo;
+	this.getJob = function(getJobShort){
+		console.log(getJobShort);
+		this.selectedJob = getJobShort;
 		controller.jobExists = '';
 		$scope.jobDetail = '';
 		$scope.jobShort = '';
@@ -145,6 +150,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 			console.log(response);
 			controller.jobExists = response.data;
 			$scope.savedJobs();
+
 		}, function(response){
 			console.log('Error adding job:');
 			console.log(response.data);
@@ -158,6 +164,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 			url: 'users/deleteSavedJobs/' + controller.userprofile.id + '/' + jobDetail.id
 		}).then(function(response){
 			console.log(response);
+			$scope.jobShort = '';
 			$scope.jobDetail = '';
 			$scope.savedJobs();
 		}, function(response){
