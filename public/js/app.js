@@ -2,7 +2,7 @@ var app = angular.module('TumTumApp', ['ngRoute', 'ngSanitize']);
 
 app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope', function($scope, $routeParams, $http, $rootScope){
 	var controller = this;
-	
+
 
 	this.getGitHubJobs = function(searchInput){
 		var url = '/jobs/ghjobs/' + searchInput;
@@ -18,9 +18,10 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 			console.log('Error: ' + response);
 		})
 	}
-	
+
 
 	$scope.savedJobs = function(){
+		console.log('Hello from savedJobs');
 		$http ({
 			method: 'GET',
 			url: 'users/savedJobs/' + controller.userprofile.id
@@ -32,12 +33,11 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 	};
 
 	$scope.savedGoals = function(){
-		console.log('hello there!!!');
+		console.log('hello from savedGoals!!!');
 		$http({
 			method: 'GET',
 			url:'users/savedGoals/' + controller.userprofile.id
 		}).then(function(response){
-			console.log(response.data);
 			controller.userGoals = response.data;
 		},function(response){
 			console.log(response);
@@ -62,6 +62,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 				}).then(function(response){
 					console.log(response);
 					$scope.savedJobs();
+					$scope.savedGoals();
 				}, function(response){
 					console.log(response);
 				})
@@ -83,7 +84,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		controller.jobExists = '';
 		$scope.jobDetail = '';
 	};
-	
+
 
 	this.addJob = function(jobInfo){
 		var url = 'users/addjob/' + controller.userprofile.id;
@@ -131,21 +132,77 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 
 
 
-	this.newItem = function(itemTitle){
+	this.newItem = function(){
 		var url = 'users/additem/' + controller.userprofile.id;
+		console.log(this.itemTitle);
+		var itemId = Math.floor(Math.random()*1000000000000);
 
+
+		var itemToPost = {'itemTitle': this.itemTitle,
+											'itemNotes': this.itemNotes,
+											'done': false,
+											'id': itemId}
 		$http({
 			method: "POST",
 			url: url,
-			data: {itemTitle}
+			data: itemToPost
 		}).then(function(response){
-			console.log(response);
+			controller.itemTitle = null;
+			controller.itemNotes = null;
 			$scope.savedGoals();
 		}, function(response){
 			console.log(response);
 		});
 	}
+
+this.deleteItem = function(goal) {
+	$http({
+		method: 'DELETE',
+		url: 'users/deletegoal/'+ controller.userprofile.id + '/' + goal.id
+	}).then(function(response){
+		$scope.savedGoals();
+		console.log(response);
+	}, function(response){
+		console.log(response);
+	})
+}
+
+this.completeItem = function(goal){
+	$http({
+		method: 'POST',
+		url: 'users/completeitem/'+ controller.userprofile.id + '/' + goal.id
+	}).then(function(response){
+		console.log('completed completeitem function');
+		console.log(response);
+		$scope.savedGoals();
+	}, function(response){
+		console.log(response);
+	})
+}
+
+
+this.submitGoalEdits = function(goal){
+	console.log('goal going to editItem');
+	console.log(goal);
+	$http({
+		method: 'POST',
+		url: '/users/edititem/' + controller.userprofile.id +'/' + goal.id,
+		data: goal
+	}).then(function(response){
+		$scope.savedGoals();
+	}, function(response){
+		console.log(response);
+	})
+
+	}
+
+this.editItem = function(goal){
+	controller.selectedGoal = goal
+}
+
+
 }]);
+
 
 
 
@@ -160,10 +217,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 		templateUrl: 'partials/jobDetail.html',
 		controller: 'UserController',
 		controllerAs: 'user'
-	}).when('/users/items/:id', {
-		templateUrl: 'partials/goalsTracker.html',
-		controller: 'UserController',
-		controllerAs: 'user'
+	// }).when('/users/items/:id', {
+	// 	templateUrl: 'partials/goalsTracker.html',
+	// 	controller: 'UserController',
+	// 	controllerAs: 'user'
 	});
 
 }]);
