@@ -108,4 +108,28 @@ router.post('/completeitem/:user_id/:goal_id', function(req, res){
   })
   });
 
+
+  router.post('/edititem/:user_id/:goal_id', function(req, res){
+    console.log('reqbody going to post:');
+    console.log(req.body);
+    var newGoals = "";
+    User.findOne({linkedInID:req.params.user_id}, function(err, foundUser){
+      foundUser.goals.forEach(function(goal){
+        if (goal.id == req.params.goal_id) {
+          goal.itemTitle = req.body.itemTitle;
+          goal.itemNotes = req.body.itemNotes;
+        }
+      })
+    foundUser.save()
+    newGoals = foundUser.goals
+
+    User.findOneAndUpdate({linkedInID:req.params.user_id}, {$set:{goals: newGoals}}, function(err, doc){
+      res.send();
+    })
+    })
+    });
+
+
+
+
 module.exports = router;

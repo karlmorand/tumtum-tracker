@@ -181,10 +181,25 @@ this.completeItem = function(goal){
 }
 
 
-this.editItem = function(item){
-	console.log(item);
-	controller.selectedGoal = item;
+this.submitGoalEdits = function(goal){
+	console.log('goal going to editItem');
+	console.log(goal);
+	$http({
+		method: 'POST',
+		url: '/users/edititem/' + controller.userprofile.id +'/' + goal.id,
+		data: goal
+	}).then(function(response){
+		$scope.savedGoals();
+	}, function(response){
+		console.log(response);
+	})
+
 	}
+
+this.editItem = function(goal){
+	controller.selectedGoal = goal
+}
+
 
 }]);
 
