@@ -2,6 +2,7 @@ var app = angular.module('TumTumApp', ['ngRoute', 'ngSanitize']);
 
 app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope', function($scope, $routeParams, $http, $rootScope){
 	var controller = this;
+	this.partial_url = 'partials/jobTruncate.html';
 	
 
 	this.getGitHubJobs = function(searchInput){
@@ -70,10 +71,48 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		}
 	}
 
+	this.jobDetailTruncate = function(jobShort){
+		$scope.jobShort = jobShort;
+		console.log($scope.jobShort);
+		$scope.getJobShort = '';
+		controller.jobExists = '';
+	}
+
+	this.getJobTruncate = function(getJobShort){
+		$scope.getJobShort = getJobShort;
+		$scope.jobShort = '';
+		controller.jobExists = '';
+		this.selectedJob = '';
+		$scope.jobDetail = '';
+	}
+
+	this.switchView = function(jobShort){
+		
+	    if(this.partial_url == 'partials/jobTruncate.html'){
+	        this.partial_url = 'partials/jobDetail.html';
+	        this.userJobDetail(jobShort);
+	    } else {
+	        this.include_url = 'partials/jobTruncate.html';
+	    }
+	};
+
+	this.switchGetJob = function(getJobShort){
+	
+	    if(this.partial_url == 'partials/jobTruncate.html'){
+	        this.partial_url = 'partials/jobDetail.html';
+	        this.getJob(getJobShort);
+	    } else {
+	        this.include_url = 'partials/jobTruncate.html';
+	    }
+	};
+
 	this.userJobDetail = function(jobDetail){
+		console.log('this is the userJobDetail function');
+		console.log(jobDetail);
 		$scope.jobDetail = jobDetail;
 		controller.jobExists = '';
 		this.selectedJob = '';
+		$scope.jobShort = '';
 	};
 
 // get Job detail and display in a template
@@ -82,6 +121,8 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		this.selectedJob = jobInfo;
 		controller.jobExists = '';
 		$scope.jobDetail = '';
+		$scope.jobShort = '';
+		$scope.getJobShort = '';
 	};
 	
 
@@ -157,13 +198,13 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 		controller: 'UserController',
 		controllerAs: 'user'
 	}).when('/users/positions/:id',{
-		templateUrl: 'partials/jobDetail.html',
+		templateUrl: 'partials/jobDetailTruncate.html',
 		controller: 'UserController',
 		controllerAs: 'user'
-	}).when('/users/items/:id', {
-		templateUrl: 'partials/goalsTracker.html',
-		controller: 'UserController',
-		controllerAs: 'user'
-	});
+	});//.when('/users/items/:id', {
+	// 	templateUrl: 'partials/goalsTracker.html',
+	// 	controller: 'UserController',
+	// 	controllerAs: 'user'
+	// });
 
 }]);

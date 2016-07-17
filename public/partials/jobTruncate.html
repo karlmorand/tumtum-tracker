@@ -1,0 +1,20 @@
+<div ng-if="jobShort" class="eleven columns" id="partial">
+
+	 <h3>{{jobShort.title}}</h3>
+
+	 <p ng-bind-html="jobShort.description | limitTo: 500"></p>
+	 <button ng-click="user.switchView(jobShort)">Read More...</button><br/>
+
+	 <button ng-if="jobShort" ng-click="user.deleteJob(jobDetail)">Delete Job from List</button>
+
+	 
+</div>
+
+<div ng-if="getJobShort" class="eleven columns" id="partial">
+	 <h4>{{getJobShort.title}}</h4>
+	 <p ng-bind-html="getJobShort.description | limitTo: 500"></p>
+	 <button ng-click="user.switchGetJob(getJobShort)">Read More...</button><br/>
+
+	<h4 ng-if="user.jobExists" id="alert">{{user.jobExists}}</h4>
+    <button ng-click="user.addJob(user.selectedJob)">Add Job to List</button>
+</div>
