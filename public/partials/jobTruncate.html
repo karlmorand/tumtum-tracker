@@ -5,7 +5,7 @@
 	 <p ng-bind-html="jobShort.description | limitTo: 500"></p>
 	 <button ng-click="user.switchView(jobShort)">Read More...</button><br/>
 
-	 <button ng-if="jobShort" ng-click="user.deleteJob(jobDetail)">Delete Job from List</button>
+	 <button ng-if="jobShort" ng-click="user.deleteJob(jobShort)">Delete Job from List</button>
 
 	 
 </div>
