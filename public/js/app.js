@@ -35,7 +35,6 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 	};
 
 	$scope.savedGoals = function(){
-		console.log('hello from savedGoals!!!');
 		$http({
 			method: 'GET',
 			url:'users/savedGoals/' + controller.userprofile.id
@@ -84,6 +83,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 					console.log(response);
 					$scope.savedJobs();
 					$scope.savedGoals();
+					$scope.savedJobTools();
 				}, function(response){
 					console.log(response);
 				})
@@ -295,7 +295,37 @@ this.showJobTools = function(){
 
 }
 
+this.showEditJobTools = function(){
+	$scope.editJobTools = true;
+}
 
+this.submitJobToolsEdits = function(jobTools){
+	console.log('submitting edits to job tools:');
+	console.log(jobTools);
+
+	$http({
+		method: 'POST',
+		url: '/users/editjobtools/'+ controller.userprofile.id,
+		data: jobTools
+	}).then(function(response){
+		$scope.savedJobTools();
+	}, function(response){
+		console.log(response);
+	})
+}
+
+$scope.savedJobTools = function(){
+	console.log('hello from savedJobTools');
+	$http({
+		method: 'GET',
+		url: 'users/savedJobTools/' + controller.userprofile.id
+	}).then(function(response){
+		controller.jobTools = response.data;
+			$scope.editJobTools = false;
+	}, function(response){
+		console.log(response);
+	})
+}
 }]);
 
 

@@ -5,8 +5,7 @@ var userSchema = mongoose.Schema({
   goals : [],
   jobs : [],
   companies : [],
-  resumeLink : String,
-  brandStatement : String,
+  jobtools: {},
 });
 
 var User = mongoose.model('User', userSchema);

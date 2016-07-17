@@ -2,21 +2,21 @@
   <h3>Job Tools</h3>
   <h4>Links</h4>
   <div ng-if="!editJobTools">
-    Resume: <a ng-model="user.jtresume"></a></br>
-    GitHub: <a ng-model="user.jtgithub"></a></br>
-    LinkedIn: <a ng-model="user.jtlinkedin"></a></br>
-    Twitter: <a ng-model="user.jttwitter"></a></br>
-    Portfolio: <a ng-model="user.jtportfolio"></a></br>
-    <button type="button" ng-click="">Edit Links</button>
+    Resume: <a>{{user.jobTools.resume}}</a></br>
+    GitHub: <a href="https://github.com/{{user.jobTools.github}}">{{user.jobTools.github}}</a></br>
+    LinkedIn:<a href="https://www.linkedin.com/in/{{user.jobTools.linkedin}}">{{user.jobTools.linkedin}}</a></br>
+    Twitter: <a href="https://twitter.com/{{user.jobTools.twitter}}">@{{user.jobTools.twitter}}</a></br>
+    Portfolio: <a>{{user.jobTools.portfolio}}</a></br>
+    <button type="button" ng-click="user.showEditJobTools()">Edit Links</button>
   </div>
 
   <div ng-if="editJobTools">
-    <form ng-submit="">
-    Resume: <input type="text" ng-model"user.jtresume"/></br>
-    GitHub: <input type="text" ng-model"user.jtgithub"/></br>
-    LinkedIn: <input type="text" ng-model"user.jtlinkedin"/></br>
-    Twitter: <input type="text" ng-model"user.jttwitter"/></br>
-    Portfolio: <input type="text" ng-model"user.jtportfolio"/></br>
+    <form ng-submit="user.submitJobToolsEdits(user.jobTools)">
+    Resume Link: <input type="text" ng-model="user.jobTools.resume"/></br>
+    GitHub Username: <input type="text" ng-model="user.jobTools.github"/></br>
+    LinkedIn Username: <input type="text" ng-model="user.jobTools.linkedin"/></br>
+    Twitter Username: <input type="text" ng-model="user.jobTools.twitter"/></br>
+    Portfolio Link: <input type="text" ng-model="user.jobTools.portfolio"/></br>
     <button type="submit">Submit</button>
     <button type="cancel">Cancel</button>
   </form>
