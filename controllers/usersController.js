@@ -94,7 +94,7 @@ router.post('/completeitem/:user_id/:goal_id', function(req, res){
   User.findOne({linkedInID:req.params.user_id}, function(err, foundUser){
     foundUser.goals.forEach(function(goal){
       if (goal.id == req.params.goal_id) {
-        goal.done = true;
+        goal.done = !goal.done;
       }
     })
   foundUser.save()
