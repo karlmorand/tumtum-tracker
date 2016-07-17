@@ -276,6 +276,16 @@ this.editItem = function(goal){
 	controller.selectedGoal = goal
 }
 
+this.showJobTools = function(){
+	$scope.jobTools = !$scope.jobTools;
+	this.selectedJob = '';
+	$scope.jobDetail = '';
+	$scope.jobShort = '';
+	$scope.getJobShort = '';
+	$scope.showGoalTracker = false;
+
+}
+
 
 }]);
 

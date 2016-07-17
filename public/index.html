@@ -50,7 +50,8 @@
     <div class="one-half column user-profile">
       <h3>Hello {{user.userprofile.firstName}} {{user.userprofile.lastName}}</h3>
       <img ng-src="{{user.userprofile.pictureUrl}}"/><br/>
-        <button class="button-primary add-company" ng-click="user.showGoalTracker()">View Goals Tracker</button>
+        <button class="button-primary add-company" ng-click="user.showGoalTracker()">View Goals Tracker</button></br>
+        <button class="button-primary add-company" ng-click="user.showJobTools()">View Job Tools</button>
 
     </div>
 
@@ -79,6 +80,7 @@
 
       <div ng-include="'partials/jobTruncate.html'"></div>
       <div ng-include="'partials/jobDetail.html'"></div>
+      <div ng-include="'partials/jobTools.html'"></div>
     </div>
     </div>
   </div>

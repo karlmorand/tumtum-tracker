@@ -1,0 +1,27 @@
+<div ng-if="jobTools" class = "eleven columns">
+  <h3>Job Tools</h3>
+  <h4>Links</h4>
+  <div ng-if="!editJobTools">
+    Resume: <a ng-model="user.jtresume"><a/></br>
+    GitHub: <a ng-model="user.jtgithub"><a/></br>
+    LinkedIn: <a ng-model="user.jtlinkedin"><a/></br>
+    Twitter: <a ng-model="user.jttwitter"><a/></br>
+    Portfolio: <a ng-model="user.jtportfolio"><a/></br>
+    <button type="button" ng-click="">Edit Links</button>
+  </div>
+
+  <div ng-if="editJobTools">
+    <form ng-submit="">
+    Resume: <input type="text" ng-model"user.jtresume"/></br>
+    GitHub: <input type="text" ng-model"user.jtgithub"/></br>
+    LinkedIn: <input type="text" ng-model"user.jtlinkedin"/></br>
+    Twitter: <input type="text" ng-model"user.jttwitter"/></br>
+    Portfolio: <input type="text" ng-model"user.jtportfolio"/></br>
+    <button type="submit">Submit</button>
+    <button type="cancel">Cancel</button>
+  </form>
+
+
+
+
+</div>
