@@ -4,8 +4,6 @@ var router = express.Router();
 var User = require('../models/userModel.js')
 
 router.get('/loggedin/:id', function(req, res) {
-    console.log('req.params.id being sent to User.find is: ');
-    console.log(req.params.id);
     User.findOne({
         linkedInID: req.params.id
     }, function(err, foundUser) {
@@ -64,18 +62,74 @@ router.delete('/deleteSavedJobs/:user_id/:job_id', function(req, res) {
 
 router.get('/savedGoals/:id', function(req, res) {
     User.findOne({linkedInID:req.params.id}, function(err, foundUser) {
-        console.log(foundUser.goals);
         res.send(foundUser.goals);
     });
 });
 
 router.post('/additem/:id', function(req,res){
     User.findOne({linkedInID:req.params.id}, function(err,foundUser){
+      console.log(req.body);
         foundUser.goals.push(req.body);
         foundUser.save();
-        
+        res.send();
     });
 });
+
+
+router.delete('/deletegoal/:user_id/:goal_id', function(req, res){
+  User.findOne({linkedInID:req.params.user_id}, function(err, foundUser) {
+    var goalIndex = foundUser.goals.findIndex(function(element){
+      if (element.id === req.params.goal_id) {
+        return true;
+      }
+    })
+    foundUser.goals.splice(goalIndex, 1);
+    foundUser.save();
+    res.send();
+})
+})
+
+router.post('/completeitem/:user_id/:goal_id', function(req, res){
+  var userUpdate = "";
+  User.findOne({linkedInID:req.params.user_id}, function(err, foundUser){
+    foundUser.goals.forEach(function(goal){
+      if (goal.id == req.params.goal_id) {
+        goal.done = !goal.done;
+      }
+    })
+  foundUser.save()
+  userUpdate = foundUser.goals;
+  console.log('userUpdate is:');
+  console.log(userUpdate);
+
+  User.findOneAndUpdate({linkedInID:req.params.user_id}, {$set:{goals:userUpdate}}, function(err, doc){
+    res.send();
+  })
+  })
+  });
+
+
+  router.post('/edititem/:user_id/:goal_id', function(req, res){
+    console.log('reqbody going to post:');
+    console.log(req.body);
+    var newGoals = "";
+    User.findOne({linkedInID:req.params.user_id}, function(err, foundUser){
+      foundUser.goals.forEach(function(goal){
+        if (goal.id == req.params.goal_id) {
+          goal.itemTitle = req.body.itemTitle;
+          goal.itemNotes = req.body.itemNotes;
+        }
+      })
+    foundUser.save()
+    newGoals = foundUser.goals
+
+    User.findOneAndUpdate({linkedInID:req.params.user_id}, {$set:{goals: newGoals}}, function(err, doc){
+      res.send();
+    })
+    })
+    });
+
+
 
 
 module.exports = router;

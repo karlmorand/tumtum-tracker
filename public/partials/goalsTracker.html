@@ -1,16 +1,30 @@
 <div class="one-half column goals-list">
   <h2>Goals</h2>
     <ul>
-      <li ng-repeat="goal in userGoals">{{goal.itemTitle}}</li>
+      <div ng-repeat="goal in user.userGoals">
+        <div ng-if="goal.done == false">
+          <li ng-click="user.editItem(goal)">
+        <div ng-include="'partials/goalDetailTodo.html'"></div>
+        </li>
+      </div>
+      </div>
+
     </ul>
-
-    <form class="action-form">
-
+    <form class="action-form" ng-submit="user.newItem()">
     	<h5>Add New Action Item</h5>
-		<input type="text" ng-model="itemTitle"/>
-		<button ng-click="user.newItem(itemTitle)">Submit</button>
+		<input type="text" ng-model="user.itemTitle" placeholder="Item Title"/>
+    <input type="text" ng-model="user.itemNotes" placeholder="Item Notes"/>
+		<button type="submit">Submit</button>
 	</form>
+  <h2>Completed Goals</h2>
+    <ul>
+      <div ng-repeat="goal in user.userGoals">
+        <div ng-if="goal.done == true">
+          <li ng-click="user.editItem(goal)">
+            <div ng-include="'partials/goalDetailDone.html'"></div>
+          </li>
+        </div>
+      </div>
+
+    </ul>
 </div>
-
-
-

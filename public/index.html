@@ -38,8 +38,8 @@
     <div class="one-half column user-profile">
       <h3>Hello {{user.userprofile.firstName}} {{user.userprofile.lastName}}</h3>
       <img ng-src="{{user.userprofile.pictureUrl}}"/><br/>
-        <button class="button-primary add-company">View Goals Tracker</button>
-        
+        <button class="button-primary add-company" ng-click="user.showGoalTracker()">View Goals Tracker</button>
+
     </div>
 
     <div class="one-half column company-list">
@@ -61,15 +61,17 @@
     </div>
 
     <div class="row">
-      <div ng-include="'partials/goalsTracker.html'"></div>
-      <div ng-include="'partials/jobTruncate.html'"></div>
+      <div ng-if="showGoalTracker">
+        <div ng-include="'partials/goalsTracker.html'"></div>
+      </div>
 
+      <div ng-include="'partials/jobTruncate.html'"></div>
       <div ng-include="'partials/jobDetail.html'"></div>
     </div>
 
   </div>
-      
 
- 
+
+
   </body>
 </html>
