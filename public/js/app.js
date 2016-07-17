@@ -284,6 +284,11 @@ this.editItem = function(goal){
 	controller.selectedGoal = goal
 }
 
+this.cancelEditItem = function(){
+	controller.selectedGoal = '';
+	$scope.savedGoals();
+}
+
 this.showJobTools = function(){
 	$scope.jobTools = !$scope.jobTools;
 	controller.jobList = '';

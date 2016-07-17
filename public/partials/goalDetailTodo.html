@@ -2,9 +2,10 @@
 <div ng-if="user.selectedGoal === goal">
     <form class="action-form">
     <input type="text" ng-model="user.selectedGoal.itemTitle" /></br>
-    <input type="textarea"class="u-full-width" ng-model="user.selectedGoal.itemNotes" /></br>
+    <textarea class="u-full-width" ng-model="user.selectedGoal.itemNotes" placeholder="Action item notes"></textarea></br>
     <button type="button" ng-click="user.submitGoalEdits(goal)">Update</button>
-    <button type="button" ng-click="user.completeItem(goal)">Complete Item</button>
+    <button type="button" ng-click="user.completeItem(goal)">Complete</button></br>
     <button type="button" ng-click="user.deleteItem(goal)">Delete</button>
+    <button type="cancel" ng-click="user.cancelEditItem()">Cancel</button>
     </form>
 </div>
