@@ -49,27 +49,56 @@
       <h3>Hello {{user.userprofile.firstName}} {{user.userprofile.lastName}}</h3>
       <img ng-src="{{user.userprofile.pictureUrl}}"/><br/>
         <button class="button-primary add-company" ng-click="user.showGoalTracker()">Action Items</button></br>
-        <button class="button-primary add-company" ng-click="user.showJobTools()">Job Tools</button>
+        <button class="button-primary add-company" ng-click="user.showJobTools()">Job Tools</button></br>
+              <input type="text" ng-model="jobSearch" placeholder="Enter location"></br>
+              <button class="button-primary add-company" ng-click="user.getGitHubJobs(jobSearch)">Search Jobs</button>
 
     </div>
 
     <div class="one-half column company-list">
       <h2>Jobs of Interest</h2>
-        <ul>
+      <p ng-if="user.userJobs == ''">Search for jobs and add interesting ones to your list. They'll be saved here.</p>
+      <table class="u-full-width">
+        <thead>
+          <tr>
+            <th>Job Title</th>
+            <th>Company</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="job in user.userJobs | limitTo: 10">
+            <td ng-click="user.jobDetailTruncate(job)">{{job.title}}</td>
+            <td>{{job.company}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+        <!-- <ul>
           <li ng-repeat="job in user.userJobs">
             <a ng-click="user.jobDetailTruncate(job)">{{job.title}} | {{job.company}}</a>
           </li>
-        </ul>
+        </ul> -->
 
-      <input type="text" ng-model="jobSearch" placeholder="Enter location"></br>
-      <button class="button-primary add-company" ng-click="user.getGitHubJobs(jobSearch)">Search</button>
-        <ul>
-          <li ng-repeat="job in user.jobList | limitTo: 5">
-            <a ng-click="user.getJobTruncate(job)">{{job.title}} | {{job.company}}</a>
-          </li>
-        </ul>
-      </div>
 
+
+      <div ng-if="user.jobList">
+      <table class="u-full-width">
+        <thead>
+          <tr>
+            <th>Job Title</th>
+            <th>Company</th>
+            <th>Location</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="job in user.jobList | limitTo: 10">
+            <td ng-click="user.getJobTruncate(job)">{{job.title}}</td>
+            <td>{{job.company}}</td>
+            <td>{{job.location}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <div class="row">
       <div ng-if="showGoalTracker">
@@ -81,7 +110,6 @@
       <div ng-include="'partials/jobTools.html'"></div>
     </div>
     </div>
-  </div>
 
 
 
