@@ -129,10 +129,23 @@ router.post('/completeitem/:user_id/:goal_id', function(req, res){
     })
     });
 
+router.post('/editjobtools/:id', function(req, res){
+  console.log('reqbody from edittools route');
+  console.log(req.body);
+  User.findOneAndUpdate({linkedInID: req.params.id}, {$set:{jobtools:req.body}}, function(err, doc){
+      res.send();
+  })
+})
+
 router.get('/logout', function(req, res){
   res.send("You've logged out")
 })
 
-
+router.get('/savedJobTools/:id', function(req, res) {
+    User.findOne({linkedInID:req.params.id}, function(err, foundUser) {
+      console.log('founduser jobtools:');
+        res.send(foundUser.jobtools);
+    });
+});
 
 module.exports = router;

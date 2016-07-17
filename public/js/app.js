@@ -15,6 +15,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		}).then(function(response){
 			controller.jobList = response.data
 			$scope.showGoalTracker = false;
+			$scope.jobTools = '';
 		}, function(response){
 			console.log('Error: ' + response);
 		})
@@ -34,7 +35,6 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 	};
 
 	$scope.savedGoals = function(){
-		console.log('hello from savedGoals!!!');
 		$http({
 			method: 'GET',
 			url:'users/savedGoals/' + controller.userprofile.id
@@ -73,6 +73,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 					$rootScope.loggedUser = true;
 					$scope.showGoalTracker = false;
 					$scope.showContent = true;
+					$scope.jobTools = '';
 
 				});
 				$http({
@@ -82,6 +83,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 					console.log(response);
 					$scope.savedJobs();
 					$scope.savedGoals();
+					$scope.savedJobTools();
 				}, function(response){
 					console.log(response);
 				})
@@ -97,6 +99,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		controller.jobExists = '';
 		this.selectedJob = '';
 		$scope.jobDetail = '';
+		$scope.jobTools = '';
 		$scope.showGoalTracker = false;
 	}
 
@@ -106,6 +109,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		controller.jobExists = '';
 		this.selectedJob = '';
 		$scope.jobDetail = '';
+		$scope.jobTools = '';
 		$scope.showGoalTracker = false;
 	}
 
@@ -137,6 +141,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		this.selectedJob = '';
 		$scope.jobShort = '';
 		$scope.getJobShort = '';
+		$scope.jobTools = '';
 		$scope.showGoalTracker = false;
 	};
 
@@ -144,7 +149,9 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		$scope.showGoalTracker = !$scope.showGoalTracker;
 		this.selectedJob = '';
 		$scope.jobDetail = '';
+		controller.jobList = '';
 		$scope.jobShort = '';
+		$scope.jobTools = '';
 		$scope.getJobShort = '';
 	}
 
@@ -156,6 +163,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		$scope.jobDetail = '';
 		$scope.jobShort = '';
 		$scope.getJobShort = '';
+		$scope.jobTools = '';
 		$scope.showGoalTracker = false;
 	};
 
@@ -276,7 +284,48 @@ this.editItem = function(goal){
 	controller.selectedGoal = goal
 }
 
+this.showJobTools = function(){
+	$scope.jobTools = !$scope.jobTools;
+	controller.jobList = '';
+	this.selectedJob = '';
+	$scope.jobDetail = '';
+	$scope.jobShort = '';
+	$scope.getJobShort = '';
+	$scope.showGoalTracker = false;
 
+}
+
+this.showEditJobTools = function(){
+	$scope.editJobTools = true;
+}
+
+this.submitJobToolsEdits = function(jobTools){
+	console.log('submitting edits to job tools:');
+	console.log(jobTools);
+
+	$http({
+		method: 'POST',
+		url: '/users/editjobtools/'+ controller.userprofile.id,
+		data: jobTools
+	}).then(function(response){
+		$scope.savedJobTools();
+	}, function(response){
+		console.log(response);
+	})
+}
+
+$scope.savedJobTools = function(){
+	console.log('hello from savedJobTools');
+	$http({
+		method: 'GET',
+		url: 'users/savedJobTools/' + controller.userprofile.id
+	}).then(function(response){
+		controller.jobTools = response.data;
+			$scope.editJobTools = false;
+	}, function(response){
+		console.log(response);
+	})
+}
 }]);
 
 
