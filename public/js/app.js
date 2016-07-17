@@ -54,6 +54,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 					controller.userprofile = result.values[0];
 					$rootScope.userprofile = controller.userprofile;
 					$rootScope.loggedUser = true;
+					$scope.showGoalTracker = false;
 
 				});
 				$http({
@@ -76,6 +77,12 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		controller.jobExists = '';
 		this.selectedJob = '';
 	};
+
+	this.showGoalTracker = function(){
+		$scope.showGoalTracker = !$scope.showGoalTracker;
+		this.selectedJob = '';
+		$scope.jobDetail = '';
+	}
 
 // get Job detail and display in a template
 	this.getJob = function(jobInfo){
