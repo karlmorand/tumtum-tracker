@@ -1,6 +1,9 @@
 var app = angular.module('TumTumApp', ['ngRoute', 'ngSanitize']);
 
 app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope', function($scope, $routeParams, $http, $rootScope){
+	$scope.showContent = false;
+	$scope.loggedOut = '';
+
 	var controller = this;
 	this.partial_url = 'partials/jobTruncate.html';
 
@@ -42,6 +45,22 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		});
 	}
 
+	$scope.logOut = function(){
+		IN.User.logout(function(){
+			$scope.showContent = false
+			$http ({
+				method: 'GET',
+				url: '/users/logout'
+			}).then(function(response){
+				$scope.loggedOut = response.data
+
+			}, function(response){
+				console.log(response);
+			})
+
+	})
+}
+
 // The following function was located on github from user eucuepo. Reference information will be listed in README file
 	$scope.getLinkedInData = function() {
 		if(!$scope.hasOwnProperty('userprofile')){
@@ -53,6 +72,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 					$rootScope.userprofile = controller.userprofile;
 					$rootScope.loggedUser = true;
 					$scope.showGoalTracker = false;
+					$scope.showContent = true;
 
 				});
 				$http({
