@@ -129,6 +129,9 @@ router.post('/completeitem/:user_id/:goal_id', function(req, res){
     })
     });
 
+router.get('/logout', function(req, res){
+  res.send("You've logged out")
+})
 
 
 

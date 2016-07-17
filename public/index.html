@@ -28,12 +28,24 @@
 
   <header class="hero">
     <h1>Tum Tum Tracker!</h1>
+    <div ng-if="!showContent && !loggedOut">
+      <p>
+        Welcome to the Tum Tum Tracker! Please sign in with your LinkedIn account to start searching for jobs and tracking your goals.
+      </p>
+          <script type="in/Login"></script>
+    </div>
+    <div ng-if="!showContent && loggedOut">
+      <p>
+        {{loggedOut}}</br>
+        Please refresh the page to log back in with your LinkedIn account.
+        <script type="in/Login"></script>
+      </p>
 
-    <script type="in/Login"></script>
-    <a href="javascript: IN.User.logout(function(){
-    console.log('Logged out');});">Logout</a>
+    </div>
+
+    <a ng-if="showContent" ng-click="logOut()">Logout</a>
   </header>
-  <div class="container">
+  <div class="container" ng-if="showContent">
 
     <div class="one-half column user-profile">
       <h3>Hello {{user.userprofile.firstName}} {{user.userprofile.lastName}}</h3>
