@@ -59,7 +59,7 @@ The following code example demonstrates how we utilize the Github jobs API to ac
 
 We wanted to provide a more streamlined approach to tracking our job seeking endeavors. Utilizing information from LinkedIn's API, we wanted a place to organize our listing of company interests, track our goals and store important links to resume's, portfolio sites and more to make it easy to send to prospective employers on the fly.
 
-### TumTum MVP Tracker:  (https://trello.com/b/QVyqQJxd)
+
 ### Project 3 Daily Tracker:  (https://trello.com/b/1PvvoBtJ)
 
 
@@ -90,3 +90,5 @@ Skeleton CSS was the framework used for this project. (http://getskeleton.com/)
 Propogation of linkedIn user profile code (in linkedin.js lines 3, 24-30 and app.js lines 6-19) referenced from user eucuepo (https://github.com/eucuepo/angular-linkedin/tree/master/angular-linkedin/js)
 
 Visit Code Pioneer.wordpress.com for further explanation: (https://codepioneer.wordpress.com/2013/09/28/angularjs-log-in-with-linkedin/)
+
+laptop header image from (kaboompics.com) 
