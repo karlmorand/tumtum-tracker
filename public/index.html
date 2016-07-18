@@ -50,7 +50,8 @@
       <img ng-src="{{user.userprofile.pictureUrl}}"/><br/>
         <button class="button-primary add-company" ng-click="user.showGoalTracker()">Action Items</button></br>
         <button class="button-primary add-company" ng-click="user.showJobTools()">Job Tools</button></br>
-              <input type="text" ng-model="jobSearch" placeholder="Enter location"></br>
+              <input type="text" ng-model="user.searchLocation" placeholder="Enter location"></br>
+              <input type="text" ng-model="user.searchKeyword" placeholder="Keyword (ex. JavaScript)"></br>
               <button class="button-primary add-company" ng-click="user.getGitHubJobs(jobSearch)">Search Jobs</button>
 
     </div>
@@ -91,7 +92,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="job in user.jobList | limitTo: 10">
+          <tr ng-repeat="job in user.jobList | limitTo: 30">
             <td ng-click="user.getJobTruncate(job)">{{job.title}}</td>
             <td>{{job.company}}</td>
             <td>{{job.location}}</td>
