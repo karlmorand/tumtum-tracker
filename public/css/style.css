@@ -2,8 +2,22 @@
 	font-family: 'Raleway', sans-serif;
 }
 
+body {
+	
+}
+
 header {
+	background: url(https://static.pexels.com/photos/6355/desk-laptop-working-technology.jpg);
+	background-size: 100%;
+	background-position: center;
+	padding: 10%;
 	text-align: center;
+}
+
+h1 {
+	/*font-weight: 400;*/
+	text-shadow: 1px 1px 1px #D3D3D3;
+
 }
 
 .columns {

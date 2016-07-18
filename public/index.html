@@ -39,12 +39,13 @@
       </p>
     </div>
 
-    <a ng-if="showContent" ng-click="logOut()">Logout</a>
+    
   </header>
   <div class="container" ng-if="showContent">
 
     <div class="one-half column user-profile">
       <h3>Hello {{user.userprofile.firstName}} {{user.userprofile.lastName}}</h3>
+      <strong><a ng-if="showContent" ng-click="logOut()">Logout</a></strong><br/>
       <img ng-src="{{user.userprofile.pictureUrl}}"/><br/>
         <button class="button-primary add-company" ng-click="user.showGoalTracker()">Action Items</button></br>
         <button class="button-primary add-company" ng-click="user.showJobTools()">Job Tools</button></br>

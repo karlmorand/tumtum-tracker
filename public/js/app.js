@@ -114,6 +114,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		$scope.jobDetail = '';
 		$scope.jobTools = '';
 		$scope.showGoalTracker = false;
+		controller.jobList = '';
 	}
 
 	this.getJobTruncate = function(getJobShort){
