@@ -2,12 +2,8 @@
 	font-family: 'Raleway', sans-serif;
 }
 
-body {
-	
-}
-
 header {
-	background: url('/img/desk-laptop-small.jpg');
+	background: url('/img/desk-laptop-blur.jpg');
 	background-size: 100%;
 	background-position: center;
 	padding: 10%;
@@ -36,4 +32,9 @@ h1 {
 
 #alert {
 	color: red;
+}
+
+#sign-up {
+	font-size: 15px;
+	color: white;
 }
