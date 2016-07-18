@@ -4,11 +4,27 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 	$scope.showContent = false;
 	$scope.loggedOut = '';
 
+
 	var controller = this;
+	controller.searchKeyword = '';
+	controller.searchLocation = '';
 	this.partial_url = 'partials/jobTruncate.html';
 
-	this.getGitHubJobs = function(searchInput){
-		var url = '/jobs/ghjobs/' + searchInput;
+	this.getGitHubJobs = function(){
+		console.log('search terms:');
+		console.log(controller.searchKeyword);
+		console.log(controller.searchLocation);
+		if (controller.searchKeyword == ''){
+			console.log('first if');
+			var urlParams = 'location=' + controller.searchLocation
+		} else if (controller.searchLocation == ''){
+			console.log('else if');
+			var urlParams = 'description=' + controller.searchKeyword
+		} else {
+			console.log('else');
+			var urlParams = 'description=' + controller.searchKeyword + '&location=' + controller.searchLocation
+		}
+		var url = '/jobs/ghjobs/' + urlParams
 		$http({
 			method: 'GET',
 			url: url
