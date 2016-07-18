@@ -2,15 +2,11 @@ function onLoad(){
   IN.Event.on(IN, "auth", function(){
   	linkedinProfileData();
   });
-
-
 }
 
 function onSuccess(data) {
   console.log(data);
   alert('Welcome ' + data.firstName)
-
-
 }
 
 function onError(error){

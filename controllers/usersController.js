@@ -68,7 +68,6 @@ router.get('/savedGoals/:id', function(req, res) {
 
 router.post('/additem/:id', function(req,res){
     User.findOne({linkedInID:req.params.id}, function(err,foundUser){
-      console.log(req.body);
         foundUser.goals.push(req.body);
         foundUser.save();
         res.send();
@@ -99,8 +98,6 @@ router.post('/completeitem/:user_id/:goal_id', function(req, res){
     })
   foundUser.save()
   userUpdate = foundUser.goals;
-  console.log('userUpdate is:');
-  console.log(userUpdate);
 
   User.findOneAndUpdate({linkedInID:req.params.user_id}, {$set:{goals:userUpdate}}, function(err, doc){
     res.send();
@@ -110,8 +107,6 @@ router.post('/completeitem/:user_id/:goal_id', function(req, res){
 
 
   router.post('/edititem/:user_id/:goal_id', function(req, res){
-    console.log('reqbody going to post:');
-    console.log(req.body);
     var newGoals = "";
     User.findOne({linkedInID:req.params.user_id}, function(err, foundUser){
       foundUser.goals.forEach(function(goal){
@@ -130,8 +125,7 @@ router.post('/completeitem/:user_id/:goal_id', function(req, res){
     });
 
 router.post('/editjobtools/:id', function(req, res){
-  console.log('reqbody from edittools route');
-  console.log(req.body);
+
   User.findOneAndUpdate({linkedInID: req.params.id}, {$set:{jobtools:req.body}}, function(err, doc){
       res.send();
   })
@@ -143,7 +137,7 @@ router.get('/logout', function(req, res){
 
 router.get('/savedJobTools/:id', function(req, res) {
     User.findOne({linkedInID:req.params.id}, function(err, foundUser) {
-      console.log('founduser jobtools:');
+
         res.send(foundUser.jobtools);
     });
 });

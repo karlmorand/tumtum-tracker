@@ -4,7 +4,6 @@ var userSchema = mongoose.Schema({
   linkedInID : String,
   goals : [],
   jobs : [],
-  companies : [],
   jobtools: {},
 });
 
