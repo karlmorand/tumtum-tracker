@@ -11,17 +11,12 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 	this.partial_url = 'partials/jobTruncate.html';
 
 	this.getGitHubJobs = function(){
-		console.log('search terms:');
-		console.log(controller.searchKeyword);
-		console.log(controller.searchLocation);
+
 		if (controller.searchKeyword == ''){
-			console.log('first if');
 			var urlParams = 'location=' + controller.searchLocation
 		} else if (controller.searchLocation == ''){
-			console.log('else if');
 			var urlParams = 'description=' + controller.searchKeyword
 		} else {
-			console.log('else');
 			var urlParams = 'description=' + controller.searchKeyword + '&location=' + controller.searchLocation
 		}
 		var url = '/jobs/ghjobs/' + urlParams
@@ -32,6 +27,10 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 			controller.jobList = response.data
 			$scope.showGoalTracker = false;
 			$scope.jobTools = '';
+			$scope.getJobShort = '';
+			this.selectedJob = '';
+			$scope.jobDetail = '';
+			$scope.jobShort = '';
 		}, function(response){
 			console.log('Error: ' + response);
 		})
@@ -39,7 +38,6 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 
 
 	$scope.savedJobs = function(){
-		console.log('Hello from savedJobs');
 		$http ({
 			method: 'GET',
 			url: 'users/savedJobs/' + controller.userprofile.id
@@ -110,7 +108,6 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 
 	this.jobDetailTruncate = function(jobShort){
 		$scope.jobShort = jobShort;
-		console.log($scope.jobShort);
 		$scope.getJobShort = '';
 		controller.jobExists = '';
 		this.selectedJob = '';
@@ -150,7 +147,6 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 	};
 
 	this.userJobDetail = function(jobDetail){
-		console.log('this is the userJobDetail function');
 		console.log(jobDetail);
 		$scope.jobDetail = jobDetail;
 		controller.jobExists = '';
@@ -173,7 +169,6 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 
 // get Job detail and display in a template
 	this.getJob = function(getJobShort){
-		console.log(getJobShort);
 		this.selectedJob = getJobShort;
 		controller.jobExists = '';
 		$scope.jobDetail = '';
@@ -186,7 +181,6 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 
 	this.addJob = function(jobInfo){
 		var url = 'users/addjob/' + controller.userprofile.id;
-		console.log(jobInfo);
 
 		$http({
 			method: 'POST',
@@ -261,7 +255,6 @@ this.deleteItem = function(goal) {
 		url: 'users/deletegoal/'+ controller.userprofile.id + '/' + goal.id
 	}).then(function(response){
 		$scope.savedGoals();
-		console.log(response);
 	}, function(response){
 		console.log(response);
 	})
@@ -272,8 +265,6 @@ this.completeItem = function(goal){
 		method: 'POST',
 		url: 'users/completeitem/'+ controller.userprofile.id + '/' + goal.id
 	}).then(function(response){
-		console.log('completed completeitem function');
-		console.log(response);
 		$scope.savedGoals();
 	}, function(response){
 		console.log(response);
@@ -282,8 +273,6 @@ this.completeItem = function(goal){
 
 
 this.submitGoalEdits = function(goal){
-	console.log('goal going to editItem');
-	console.log(goal);
 	$http({
 		method: 'POST',
 		url: '/users/edititem/' + controller.userprofile.id +'/' + goal.id,
@@ -321,8 +310,6 @@ this.showEditJobTools = function(){
 }
 
 this.submitJobToolsEdits = function(jobTools){
-	console.log('submitting edits to job tools:');
-	console.log(jobTools);
 
 	$http({
 		method: 'POST',
@@ -336,7 +323,6 @@ this.submitJobToolsEdits = function(jobTools){
 }
 
 $scope.savedJobTools = function(){
-	console.log('hello from savedJobTools');
 	$http({
 		method: 'GET',
 		url: 'users/savedJobTools/' + controller.userprofile.id
