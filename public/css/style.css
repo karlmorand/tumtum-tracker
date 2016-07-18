@@ -7,7 +7,7 @@ body {
 }
 
 header {
-	background: url(https://static.pexels.com/photos/6355/desk-laptop-working-technology.jpg);
+	background: url('/img/desk-laptop-small.jpg');
 	background-size: 100%;
 	background-position: center;
 	padding: 10%;
