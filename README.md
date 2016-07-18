@@ -27,9 +27,34 @@ Take your LinkedIn experience to the next level with TumTum Tracker. The Tum Tum
 
 
 ## Code Example
+The following code example demonstrates how we utilize the Github jobs API to access a listing of active job posts within angular to display the search results in our getJob partial view:
+```
+	this.getGitHubJobs = function(){
 
-Show what the library does as concisely as possible, developers should be able to figure out how your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
-
+		if (controller.searchKeyword == ''){
+			var urlParams = 'location=' + controller.searchLocation
+		} else if (controller.searchLocation == ''){
+			var urlParams = 'description=' + controller.searchKeyword
+		} else {
+			var urlParams = 'description=' + controller.searchKeyword + '&location=' + controller.searchLocation
+		}
+		var url = '/jobs/ghjobs/' + urlParams
+		$http({
+			method: 'GET',
+			url: url
+		}).then(function(response){
+			controller.jobList = response.data
+			$scope.showGoalTracker = false;
+			$scope.jobTools = '';
+			$scope.getJobShort = '';
+			this.selectedJob = '';
+			$scope.jobDetail = '';
+			$scope.jobShort = '';
+		}, function(response){
+			console.log('Error: ' + response);
+		})
+	}
+```
 ## Motivation
 
 We wanted to provide a more streamlined approach to tracking our job seeking endeavors. Utilizing information from LinkedIn's API, we wanted a place to organize our listing of company interests, track our goals and store important links to resume's, portfolio sites and more to make it easy to send to prospective employers on the fly.
@@ -40,18 +65,21 @@ We wanted to provide a more streamlined approach to tracking our job seeking end
 
 ## Installation
 
-Provide code examples and explanations of how to get the project.
+Visit our site at (https://tumtum-tracker.herokuapp.com/) and sign in with your existing LinkedIn account.
 
 ## API Reference
 
 LinkedIn API: (https://developer.linkedin.com/docs)
+Github Jobs API: (https://jobs.github.com/api)
 
+Skeleton CSS was the framework used for this project. (http://getskeleton.com/)
 
 
 ### The following node packages will be utilized:
 
 - Express
 - Mongoose
+- request
 - body-parser
 - method-override
 - dotenv
