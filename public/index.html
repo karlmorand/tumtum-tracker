@@ -27,13 +27,14 @@
   <header class="hero">
     <h1>Tum Tum Tracker!</h1>
     <div ng-if="!showContent && !loggedOut">
-      <p>
+      <p id="sign-up">
         Welcome to the Tum Tum Tracker! Please sign in with your LinkedIn account to start searching for jobs and tracking your goals.
-      </p>
-          <script type="in/Login"></script>
+      </p><br/>
+          <script type="in/Login"></script><br/>
+          <p id="sign-up">If you do not have a LinkedIn Account, <a href="https://www.linkedin.com/">click here</a> to sign up for one.</p>
     </div>
     <div ng-if="!showContent && loggedOut">
-      <p>
+      <p id="sign-up">
         {{loggedOut}}</br>
         Please refresh the page to log back in with your LinkedIn account.
       </p>
@@ -95,7 +96,7 @@
         </tbody>
       </table>
     </div>
-
+    <p ng-if="user.jobList.length == 0">No Results. Try a different search term.</p>
     <div class="row">
         <div ng-include="'partials/goalsTracker.html'"></div>
 
